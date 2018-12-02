@@ -749,6 +749,59 @@ public class JenkinsApi {
       e.printStackTrace();
     }
   }
+  
+  /*
+   */
+ 
+ public String getConsoleTextTest(String strUrl) {
+	 String console = "";
+	    HttpURLConnection conn = null;
+
+	    try {
+	      if (Thread.interrupted()) {
+	        throw new InterruptedException();
+	      }
+	      URL url = new URL(strUrl);
+	      conn = (HttpURLConnection) url.openConnection();
+	      String input = jenkinsData.getJenkinsRootUsername() + ":"
+	          + jenkinsData.getJenkinsRootPassword();
+	      Base64.Encoder encoder = Base64.getEncoder();
+	      String encoding = encoder.encodeToString(input.getBytes());
+	      conn.setRequestProperty(AUTHORIZATION, BASIC + encoding);
+	      conn.setReadTimeout(10000);
+	      conn.setConnectTimeout(15000);
+	      conn.setRequestMethod("GET");
+	      conn.connect();
+	      if (Thread.interrupted()) {
+	        throw new InterruptedException();
+	      }
+	      try (BufferedReader br = new BufferedReader(
+	          new InputStreamReader(conn.getInputStream(), UTF_8));) {
+	        String str = "";
+	        StringBuilder sb = new StringBuilder();
+	        boolean startRecord =false;
+	        while (null != (str = br.readLine())) {
+	        	 if (str.contains("java.lang.")) {
+		        	  startRecord=true;
+		          }else if(str.length()==0) {
+		        	  startRecord=false;
+		          }
+		          if(startRecord) {
+		        	  sb.append("\n");
+		              sb.append(str);
+		          }
+	        }
+	        console = sb.toString();
+	      }
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } finally {
+	      if (conn != null) {
+	        conn.disconnect();
+	      }
+	    }
+		return console;
+ }
 
   /**
    * Get

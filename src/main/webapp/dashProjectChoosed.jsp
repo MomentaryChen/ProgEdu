@@ -129,6 +129,12 @@
         .CTF {
             background: #32CD32;
         }
+        #container{
+		  width: 100%;
+		  height: 500px;
+		  margin: 10px; 
+		  background: #fff3cd;
+		}
 	</style>
 	
 	<link rel="shortcut icon" href="img/favicon.ico"/>
@@ -306,12 +312,16 @@
 				String jenkinsBuildNumUrl = jenkinsData.getJenkinsHostUrl() + "/job/" + jobName;
 				String lastBuildUrl = jenkinsData.getJenkinsHostUrl() + "/job/" + jobName + "/" +  num + "/consoleText";
 				String url = jenkinsData.getJenkinsHostUrl() + "/job/" + jobName + "/";
+				String ConsoleText = jenkins.getConsoleTextTest("http://140.134.26.77:8082/job/d0440792_OOP-HW2/2/console");
 			%>
 			<h4><a id="iFrameTitle" href="<%=jenkinsBuildNumUrl%>">Feedback Information (#<%=num %>)</a></h4>
-			<div style="margin:10px;">
+			<!--  <div style="margin:10px;">
 				<iframe src="<%=lastBuildUrl %>" width="100%" height="500px" style="background: #fff3cd;" id="jenkinsOutput">
 			  		<p>Your browser does not support iframes.</p>
 				</iframe>
+			</div>-->
+			<div id="container">
+				<pre> <%=ConsoleText%></pre>
 			</div>
 			<!-- iFrame -->
        </div>
