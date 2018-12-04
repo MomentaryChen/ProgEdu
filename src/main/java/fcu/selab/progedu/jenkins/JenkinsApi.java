@@ -753,54 +753,26 @@ public class JenkinsApi {
   /*
    */
  
- public String getConsoleTextTest(String strUrl) {
-	 String console = "";
-	    HttpURLConnection conn = null;
-
-	    try {
-	      if (Thread.interrupted()) {
-	        throw new InterruptedException();
-	      }
-	      URL url = new URL(strUrl);
-	      conn = (HttpURLConnection) url.openConnection();
-	      String input = jenkinsData.getJenkinsRootUsername() + ":"
-	          + jenkinsData.getJenkinsRootPassword();
-	      Base64.Encoder encoder = Base64.getEncoder();
-	      String encoding = encoder.encodeToString(input.getBytes());
-	      conn.setRequestProperty(AUTHORIZATION, BASIC + encoding);
-	      conn.setReadTimeout(10000);
-	      conn.setConnectTimeout(15000);
-	      conn.setRequestMethod("GET");
-	      conn.connect();
-	      if (Thread.interrupted()) {
-	        throw new InterruptedException();
-	      }
-	      try (BufferedReader br = new BufferedReader(
-	          new InputStreamReader(conn.getInputStream(), UTF_8));) {
-	        String str = "";
-	        StringBuilder sb = new StringBuilder();
-	        boolean startRecord =false;
-	        while (null != (str = br.readLine())) {
-	        	 if (str.contains("java.lang.")) {
-		        	  startRecord=true;
-		          }else if(str.length()==0) {
-		        	  startRecord=false;
-		          }
-		          if(startRecord) {
-		        	  sb.append("\n");
-		              sb.append(str);
-		          }
-	        }
-	        console = sb.toString();
-	      }
-	    } catch (Exception e) {
-	      e.printStackTrace();
-	    } finally {
-	      if (conn != null) {
-	        conn.disconnect();
-	      }
-	    }
-		return console;
+ public String getConsoleTextTest(String console) {
+	 String consoleTest="";
+	 String[] str =console.split("\n");
+	 int start =0;
+	 StringBuilder sb = new StringBuilder();
+	 if(str!=null) {
+		 for(String s:str) {
+			 if(s.contains("java.lang.NullPointerException") && start==0) {
+				 start=1;
+			 }else if(s.contains("--------------------------UpdateDbPublisher--------------------------------") && start==1){
+				 break;		 
+			 }
+			 if(start==1) {
+				 sb.append(s);
+				 sb.append("\n");
+			 }
+		 }
+		 consoleTest=sb.toString();
+	 }
+	 return consoleTest;
  }
 
   /**
