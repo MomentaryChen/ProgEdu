@@ -760,7 +760,7 @@ public class JenkinsApi {
 	 StringBuilder sb = new StringBuilder();
 	 if(str!=null) {
 		 for(String s:str) {
-			 if(s.contains("java.lang.NullPointerException") && start==0) {
+			 if(s.contains("-------------------------------------------------------") && start==0) {
 				 start=1;
 			 }else if(s.contains("--------------------------UpdateDbPublisher--------------------------------") && start==1){
 				 break;		 
