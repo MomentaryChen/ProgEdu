@@ -863,6 +863,24 @@ public class JenkinsApi {
   }
 
   /**
+   * get checkstyle information
+   * 
+   * @param consoleText consoleText
+   * @return checkstyleInfo checkstyleInfo
+   */
+  public String getCheckstyleInfo(String consoleText) {
+    String checkstyleInfo;
+    String checkstyleStart = "Starting audit...";
+    String checkstyleEnd = "Audit done.";
+    checkstyleInfo = consoleText.substring(
+        consoleText.indexOf(checkstyleStart) + checkstyleStart.length(),
+        consoleText.indexOf(checkstyleEnd));
+
+    return checkstyleInfo;
+
+  }
+
+  /**
    * Get Job Api Json
    * 
    * @param username jenkins username
