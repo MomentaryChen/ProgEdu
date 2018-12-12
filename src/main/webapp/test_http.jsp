@@ -5,14 +5,14 @@
 
 <%@ include file="language.jsp"%>
 
-<c:url value="index.jsp" var="displayLan">
+<c:url value="test_http.jsp" var="displayLan">
   <c:param name="Language" value="tw" />
 </c:url>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>ProgEdu4Web</title>
+<title>PPPPPPPPP</title>
 <meta charset="UTF-8">
 
 <link rel="shortcut icon" href="img/favicon.ico" />
@@ -82,13 +82,15 @@ form[role=login]>div {
 </head>
 
 <body>
+
   <div class="container">
     <div class="row" id="pwd-container">
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <section class="login-form">
-        <form method="post" action="AfterEnter" role="login">
-          <h4 id="course-name"><%=CourseConfig.getInstance().getCourseFullName()%></h4>  
+        <form method="post" action="AfterTest" role="login">
+          <h4 id="course-name"><%=CourseConfig.getInstance().getCourseFullName()%></h4>
+          <h4>TEST:${username}</h4>
           <input type="hidden" name="grant_type" value="password">
           <input type="text" name="username" placeholder="user name" required autofocus class="form-control input-lg"/> 
           <input type="password" name="password" class="form-control input-lg" id="password" placeholder="password" required />

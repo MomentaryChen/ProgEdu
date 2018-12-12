@@ -313,7 +313,7 @@
 				String lastBuildUrl = jenkinsData.getJenkinsHostUrl() + "/job/" + jobName + "/" +  num + "/consoleText";
 				String url = jenkinsData.getJenkinsHostUrl() + "/job/" + jobName + "/";
 				String ConsoleText = jenkins.getConsoleText(lastBuildUrl);
-				String ConsoleTextTest = jenkins.getConsoleTextTest(ConsoleText);
+				String ConsoleTest = jenkins.getConsoleTest(ConsoleText);
 			%>
 			<h4><a id="iFrameTitle" href="<%=jenkinsBuildNumUrl%>">Feedback Information (#<%=num %>)</a></h4>
 			<!--  <div style="margin:10px;">
@@ -322,7 +322,7 @@
 				</iframe>
 			</div>-->
 			<div id="container">
-				<pre> <%=ConsoleTextTest%></pre>
+				<pre> <%=ConsoleTest%></pre>
 			</div>
 			<!-- iFrame -->
        </div>

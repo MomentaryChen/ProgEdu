@@ -753,25 +753,15 @@ public class JenkinsApi {
   /*
    */
  
- public String getConsoleTextTest(String console) {
+ public String getConsoleTest(String console) {
 	 String consoleTest="";
-	 String[] str =console.split("\n");
-	 int start =0;
-	 StringBuilder sb = new StringBuilder();
-	 if(str!=null) {
-		 for(String s:str) {
-			 if(!s.startsWith("[INFO]") && s.contains("-------------------------------------------------------") && start==0) {
-				 start=1;
-			 }else if(s.contains("--------------------------UpdateDbPublisher--------------------------------") && start==1){
-				 break;		 
-			 }
-			 if(start==1) {
-				 sb.append(s);
-				 sb.append("\n");
-			 }
-		 }
-		 consoleTest=sb.toString();
-	 }
+	 String startStr="-------------------------------------------------------\n T E S T S";
+	 String goal = "Tests run:";
+	 int endStr=console.indexOf(goal,console.indexOf(goal)+goal.length());
+	 int end=console.indexOf("\n",endStr);
+	 
+	 consoleTest = console.substring(console.indexOf(startStr)-1, end);
+
 	 return consoleTest;
  }
 
