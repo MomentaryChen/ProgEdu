@@ -31,7 +31,7 @@
         bottom: 0%;
         left: 0;
         right: 0%;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0);
         z-index: 9999;
         display: none;
         text-align: center;
@@ -93,7 +93,7 @@
 
         .sidebar {
             height: 100%;
-            background-color: #444;
+            background-color: while;
             color: white;
             margin: -1px;
             position: fixed; /* Set the navbar to fixed position */
@@ -103,7 +103,7 @@
             z-index: 100;
         }
         .sidebar a{
-            color: white;
+            color: black;
         }
         .sidebar a:hover{
             color: orange;
@@ -163,6 +163,9 @@
             color: #fff;
             line-height: 30px;
         }
+        .text{
+        	text-align: center;
+        }
     </style>
 
     <link rel="shortcut icon" href="img/favicon.ico"/>
@@ -199,7 +202,8 @@
     <div id="loader"></div>
 </div>
 <!-- -----sidebar----- -->
-<div class="sidebar" style="width:200px;">
+
+<div class="sidebar" style="width:200px;overflow: auto;">
     <ul class="nav flex-column" style="padding-top: 20px;">
         <li class="nav-item">
             <font size="4"><a href="javascript:;" data-toggle="collapse" data-target="#overview" class="nav-link"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_a_overview"/> <i class="fa fa-chevron-down" aria-hidden="true"></i></a></font>
@@ -230,13 +234,14 @@
         </li>
     </ul>
 </div>
+
 <!-- -----sidebar----- -->
-<div class="container-fluid" id="main" style="width: auto;">
+<div class="container-fluid" id="main" style="width: 60%; margin: auto;text-align:center;overflow: auto">
     <h1 style="margin-bottom: 20px;"><fmt:message key="dashboard_a_overview"/></h1>
     <!-- ---------------------------- Student Project ------------------------------- -->
-    <div class="card" style="width: fit-content;">
+    <div class="card" style="width: fit-content;margin: auto;text-align:center;">
         <h4 id="Student Projects" class="card-header"><i class="fa fa-table" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_li_studentProjects"/></h4>
-        <div class="card-block">
+        <div class="card-block"">
             <!-- <div id="inline">
 				<p class="ovol gray" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_compileNotYet"/></p>
 				<p class="ovol red" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_compileFail"/></p>
@@ -249,11 +254,11 @@
             <table class="table table-striped" style="margin-top: 20px; width: 100%">
                 <thead>
 	                <tr>
-	                    <th style="font-weight: 900; font-size: 18px"><fmt:message key="dashboard_th_studentId"/></th>
+	                    <th style="font-weight: 900; text-align:center ; font-size: 18px"><fmt:message key="dashboard_th_studentId"/></th>
 	                    <%
 	                        for(Project project : dbProjects){
 	                    %>
-	                    <th style="font-weight: 900; font-size: 18px"><%=project.getName() %></th>
+	                    <th style="font-weight: 900;text-align:center; font-size: 18px"><%=project.getName() %></th>
 	                    <%
 	                        }
 	                    %>
@@ -325,7 +330,7 @@
                         content += '<p>' + pName + '</p></td>';
                     } else {
                         pName = hwName;
-                        content += '<td style="padding: 10px 0px 0px 30px;">';
+                        content += '<td style="align:center">';
                         content += '<p id="' + userName + '_' + hwName + '" class="' + color + '">';
                         content += '<a id="' + userName + '_' + hwName + '_commit" href="dashProjectChoosed.jsp?userId=' + gitlabId + '&proName=' + hwName + '">';
                         content += commit;

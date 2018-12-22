@@ -753,17 +753,6 @@ public class JenkinsApi {
   /*
    */
  
- public String getConsoleTest(String console) {
-	 String consoleTest="";
-	 String startStr="-------------------------------------------------------\n T E S T S";
-	 String goal = "Tests run:";
-	 int endStr=console.indexOf(goal,console.indexOf(goal)+goal.length());
-	 int end=console.indexOf("\n",endStr);
-	 
-	 consoleTest = console.substring(console.indexOf(startStr)-1, end);
-
-	 return consoleTest;
- }
 
   /**
    * Get

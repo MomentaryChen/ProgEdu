@@ -49,7 +49,6 @@
 			return false;
 		});
 	});
-	
     $(document).ready(function() {
         $("#newStudent").submit(function(evt) {
             evt.preventDefault();
@@ -87,73 +86,11 @@
 	<div id="loadingBackground" style="display: none">
 		<div id="loader"></div>
 	</div>
-	<div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="index.jsp" class="brand"><i class="icon-leaf">ProgEdu2</i></a>
-                    <div id="app-nav-top-bar" class="nav-collapse">
-                        <ul class="nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">TRY ME!
-                                        <b class="caret hidden-phone"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="dashboard.html">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="form.html">Form</a>
-                                        </li>
-                                        <li>
-                                            <a href="custom-view.html">Custom View</a>
-                                        </li>
-                                        <li>
-                                            <a href="login.html">Login Page</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">CHANGE NAV BAR
-                                        <b class="caret hidden-phone"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="demo-horizontal-nav.html">Horizontal</a>
-                                        </li>
-                                        <li>
-                                            <a href="demo-horizontal-fixed-nav.html">Horizontal Fixed</a>
-                                        </li>
-                                        <li>
-                                            <a href="demo-vertical-nav.html">Vertical</a>
-                                        </li>
-                                        <li>
-                                            <a href="demo-vertical-fixed-nav.html">Vertical Fixed</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            
-                        </ul>
-                        <ul class="nav pull-right">
-                            <li>
-                                <a href="login.html">Logout</a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-	</div>
-	<div style="padding-left: 300px;padding-right: 300px;text-align:center;">
-		<br>
-		<div class="box" style="padding-top: 20px;">
+	<div style="padding-left: 450px;padding-right: 450px;text-align:center;">
+		<div class="box">
 			<div class="box-header">
 				<i class="icon-book"></i>
-				<h5><strong><fmt:message key="teacherManageStudent_h3_newAllStudent"/></strong></h5>
+				<h4 class="card-header"><strong><fmt:message key="teacherManageStudent_h3_newAllStudent"/></strong></h4>
 			</div>
 			<div class="col-md-3" style="padding-top: 20px;">
 				<a href="StudentTemplate.csv" class="btn btn-default" style="background-color:#F5F5F5; color: #292b2c; border-color: #ccc">
@@ -178,17 +115,17 @@
 		</div>
 	</div>
 	
-	<div style="padding-left: 300px;padding-right: 300px;text-align:center;padding-top: 20px;">
+	<div style="padding-left: 450px;padding-right: 450px;text-align:center;">
 		<div class="box">
 			<div class="box-header">
 				<i class="icon-book"></i>
-				<h5><strong><fmt:message key="teacherManageStudent_h3_newAStudent"/></strong></h5>
+				<h4 class="card-header"><strong><fmt:message key="teacherManageStudent_h3_newAStudent"/></strong></h4>
 			</div>
 			
 				
-			<div class="box-content" style="padding: 20px 20px 20px 20px;">
+			<div class="card-block" style="padding: 20px 20px 20px 20px;">
 				<div class="form-group">
-					<form id="newStudent" class="form-inline">
+					<form id="newStudent">
 						<div class="form-group row" >
 							<label class="col-sm-2 col-form-label">Student's name</label>
 							<div class="col-sm-3">

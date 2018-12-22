@@ -309,6 +309,7 @@
        		<!-- iFrame -->
 			<%
 				StudentDashChoosePro studentDashChoosePro = new StudentDashChoosePro();
+				UnitTestFailure t = new UnitTestFailure();
 				String color = studentDashChoosePro.getLastColor(choosedUser.getUsername(),projectName);
 				Status status = StatusFactory.getStatus(color);
 				int num = lastBuildMessageNum;
@@ -316,7 +317,7 @@
 				String jenkinsBuildNumUrl = jenkinsData.getJenkinsHostUrl() + "/job/" + jobName;
 				String lastBuildUrl = jenkinsBuildNumUrl + "/" +  num + "/consoleText";
 				String detailConsoleText = jenkins.getConsoleText(lastBuildUrl);
-				String console = status.getConsole(detailConsoleText);
+				String console = t.getConsole(detailConsoleText);
 			%>
 			<h4><a id="iFrameTitle" href="<%=jenkinsBuildNumUrl%>">Feedback Information (#<%=num %>)</a></h4>
 			<!--  <div style="margin:10px;">
