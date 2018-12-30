@@ -13,15 +13,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="shortcut icon" href="img/favicon.ico"/>
-	<link rel="bookmark" href="img/favicon.ico"/>
-	<title>ProgEdu2</title>
-	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript" ></script>
-    <link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
+	<%@ include file="header.jsp" %>
+	<style>
+	.form-group{
+		padding-top:5px;
+	}
+	
+	</style>
+	
 </head>
 
-<body >
+<body>
+	
 <script>
 	$(document).ready(function() {
 		$("#addAllStudent").submit(function(evt) {
@@ -84,123 +87,16 @@
             document.getElementById("loadingBackground").style.display = "block";
         }
 	</script>
-	<div id="loadingBackground" style="display: none">
-		<div id="loader"></div>
-	</div>
-	
-	<div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="dashboard.jsp" class="brand"><i class="icon-leaf">ProgEdu2</i></a>
-                    <div id="app-nav-top-bar" class="nav-collapse">
-                        <ul class="nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">TRY ME!
-                                        <b class="caret hidden-phone"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="dashboard.html">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="form.html">Form</a>
-                                        </li>
-                                        <li>
-                                            <a href="custom-view.html">Custom View</a>
-                                        </li>
-                                        <li>
-                                            <a href="login.html">Login Page</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">CHANGE NAV BAR
-                                        <b class="caret hidden-phone"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="demo-horizontal-nav.html">Horizontal</a>
-                                        </li>
-                                        <li>
-                                            <a href="demo-horizontal-fixed-nav.html">Horizontal Fixed</a>
-                                        </li>
-                                        <li>
-                                            <a href="demo-vertical-nav.html">Vertical</a>
-                                        </li>
-                                        <li>
-                                            <a href="demo-vertical-fixed-nav.html">Vertical Fixed</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            
-                        </ul>
-                        <ul class="nav pull-right">
-                            <li>
-                                <a href="login.html">Logout</a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-	</div>
-	
-	<div class="body-nav body-nav-horizontal body-nav-fixed">
-		<div class="container">
-			<ul>
-				<li>
-					<a href="#">
-						<i class="icon-dashboard icon-large"></i> Dashboard
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-calendar icon-large"></i> Schedule
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-map-marker icon-large"></i> Map It
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-tasks icon-large"></i> Widgets
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-cogs icon-large"></i> Settings
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-list-alt icon-large"></i> Forms
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-bar-chart icon-large"></i> Charts
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="main" style="padding-top: 60px;">
-		<div style="padding-left: 450px;padding-right: 450px;text-align:center;">
+
+	<div class="main" style="padding-top: 100px;">
+		<div style="padding-left: 300px;padding-right: 300px;text-align:center;">
 			<br>
-			<div class="box" style="padding-top: 40px;">
+			<div class="box">
 				<div class="box-header">
 					<i class="icon-book"></i>
 					<h5><strong><fmt:message key="teacherManageStudent_h3_newAllStudent"/></strong></h5>
 				</div>
-				<div class="col-md-3" style="padding-top: 20px;">
+				<div class="col-md-3">
 					<a href="StudentTemplate.csv" class="btn btn-default" style="background-color:#F5F5F5; color: #292b2c; border-color: #ccc">
 						<fmt:message key="teacherManageStudent_a_downloadEnrollmentTemplate"/>
 					</a>
@@ -222,7 +118,7 @@
 			</div>
 		</div>
 		
-		<div style="padding-left: 450px;padding-right: 450px;text-align:center;padding-top: 20px;">
+		<div style="padding-left: 300px;padding-right: 300px;text-align:center;padding-top: 20px;">
 			<div class="box">
 				<div class="box-header">
 					<i class="icon-book"></i>
@@ -231,26 +127,19 @@
 				<form id="newStudent" class="form-inline">
 					<div class="box-content" style="padding: 20px 20px 20px 20px;">
 						<div class="form-group">
-								<div class="form-group row" >
-									<label class="col-sm-2 col-form-label">Student's name</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" name="studentName">
-									</div>
+								<div class="form-group row" style>
+									<label class="col-sm-2 col-form-label">Student's name:</label>
+									<input type="text" class="form-control" name="studentName">
 								</div>
 								<div class="form-group row" >
-									<label class="col-sm-2 col-form-label">Student's Id</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" name="studentId">
-									</div>
+									<label class="col-sm-2 col-form-label">Student's Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<input type="text" class="form-control" name="studentId">
 								</div>
 								<div class="form-group row" >
-									<label class="col-sm-2 col-form-label">Student's email</label>
-									<div class="col-sm-3">
-										<input type="text" class="form-control" name="studentEmail">
-									</div>
+									<label class="col-sm-2 col-form-label">Student's email:</label>
+									<input type="text" class="form-control" name="studentEmail">
 								</div>
 								<div class="form-group">
-									
 								</div>
 						</div>
 					</div>
@@ -261,7 +150,7 @@
 			</div>
 		</div>
 		
-		<div style="padding-left: 450px;padding-right: 450px;text-align:center;padding-top: 20px;">
+		<div style="padding-left: 300px;padding-right: 300px;text-align:center;padding-top: 20px;">
 		<div class="box">
 			<div class="box-header">
 				<i class="icon-book"></i>
@@ -270,28 +159,21 @@
 			<form id="newStudent" class="form-inline">
 				<div class="box-content" style="padding: 20px 20px 20px 20px;">
 					<div class="form-group">
-						
-							<div class="form-group row" >
-								<label class="col-sm-2 col-form-label">Student's name</label>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" name="studentName">
-								</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">Student's name:</label>
+								<input type="text" class="form-control" name="studentName">
 							</div>
 							<div class="form-group row" >
-								<label class="col-sm-2 col-form-label">Student's Id</label>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" name="studentId">
-								</div>
+								<label class="col-sm-2 col-form-label">Student's Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>	
+								<input type="text" class="form-control" name="studentId">
+
 							</div>
 							<div class="form-group row" >
-								<label class="col-sm-2 col-form-label">Student's email</label>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" name="studentEmail">
-								</div>
+								<label class="col-sm-2 col-form-label">Student's email:</label>
+								<input type="text" class="form-control" name="studentEmail">
 							</div>
 							<div class="form-group">
 							</div>
-						
 					</div>
 				</div>
 			

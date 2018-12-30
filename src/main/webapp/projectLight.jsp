@@ -28,19 +28,19 @@
             text-align: center;
 		}
 		.red, .CPF {
-			background: #e52424;
+			background: #e81b23;
 		}
 		.blue, .S {
-			background: #5fa7e8;
+			background: #64aff3;
 		}
 		.gray, .NB {
 			background: #878787;
 		}
 		.orange, .CSF {
-			background: gold;
+			background: #f5855b;
 		}
 		.green, .CJF {
-			background: #32CD32;
+			background: #54c989;
 		}
 		.gold{
 			background: #FFD700;

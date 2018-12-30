@@ -91,28 +91,6 @@
             margin: 10px 0px 0px 0px;
         }
 
-        .sidebar {
-            height: 100%;
-            background-color: while;
-            color: white;
-            margin: -1px;
-            position: fixed; /* Set the navbar to fixed position */
-            top: 0;
-            margin-top: 50px;
-            overflow-y: scroll;
-            z-index: 100;
-        }
-        .sidebar a{
-            color: black;
-        }
-        .sidebar a:hover{
-            color: orange;
-        }
-        .sidebar button{
-            color: white;
-            background: none;
-        }
-
         #main {
             height: 100%;
             margin-left: 200px;
@@ -127,41 +105,6 @@
 
         #inline p {
             display: inline;
-        }
-        .ovol {
-            border-radius: 5px;
-            height: 50px;
-            font-weight: bold;
-            width: 120px;
-            color: white;
-            text-align: center;
-        }
-        .circle {
-            border-radius: 30px;
-            height: 30px;
-            font-weight: bold;
-            width: 30px;
-            color: white;
-            text-align: center;
-        }
-        .CPF {
-            background: #e52424;
-        }
-        .S {
-            background: #5fa7e8;
-        }
-        .NB {
-            background: #878787;
-        }
-        .CSF {
-            background: gold;
-        }
-        .CTF {
-            background: #32CD32;
-        }
-        .circle a {
-            color: #fff;
-            line-height: 30px;
         }
         .text{
         	text-align: center;
@@ -201,55 +144,13 @@
 <div id="loadingBackground" style="display: none">
     <div id="loader"></div>
 </div>
-<!-- -----sidebar----- -->
 
-<div class="sidebar" style="width:200px;overflow: auto;">
-    <ul class="nav flex-column" style="padding-top: 20px;">
-        <li class="nav-item">
-            <font size="4"><a href="javascript:;" data-toggle="collapse" data-target="#overview" class="nav-link"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_a_overview"/> <i class="fa fa-chevron-down" aria-hidden="true"></i></a></font>
-            <ul id="overview" class="collapse" style="list-style: none;">
-                <li class="nav-item"><font size="3"><a class="nav-link" href="#Student Projects"><i class="fa fa-table" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_li_studentProjects"/></a></font></li>
-                <li class="nav-item"><font size="3">
-                    <a class="nav-link" href="dashboardChart.jsp">
-                        <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;
-                        <fmt:message key="dashboard_li_chart"/>
-                    </a>
-                </font></li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <font size="4"><a href="javascript:;" data-toggle="collapse" data-target="#student" class="nav-link"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_a_student"/> <i class="fa fa-chevron-down" aria-hidden="true"></i></a></font>
-            <ul id="student" class="collapse" style="list-style: none;">
-                <%
-                    for(User user : users){
-                        String userName = user.getUserName();
-                        String name = user.getName();
-                        String href = "\"dashStuChoosed.jsp?studentId=" + user.getGitLabId() + "\"";
-                %>
-                <li class="nav-item"><font size="3"><a class="nav-link" href=<%=href %>><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp; <%=userName %>&nbsp; <%=name %></a></font></li>
-                <%
-                    }
-                %>
-            </ul>
-        </li>
-    </ul>
-</div>
-
-<!-- -----sidebar----- -->
-<div class="container-fluid" id="main" style="width: 60%; margin: auto;text-align:center;overflow: auto">
+<div class="container-fluid" id="main" style="width: 80%; margin: auto;text-align:center;overflow: auto">
     <h1 style="margin-bottom: 20px;"><fmt:message key="dashboard_a_overview"/></h1>
     <!-- ---------------------------- Student Project ------------------------------- -->
     <div class="card" style="width: fit-content;margin: auto;text-align:center;">
         <h4 id="Student Projects" class="card-header"><i class="fa fa-table" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_li_studentProjects"/></h4>
         <div class="card-block"">
-            <!-- <div id="inline">
-				<p class="ovol gray" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_compileNotYet"/></p>
-				<p class="ovol red" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_compileFail"/></p>
-				<p class="ovol orange" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_checkstyleFail"/></p>
-				<p class="ovol green" style="padding: 5px 10px;"><fmt:message key="dashboard_p_plagiarism"/></p>
-				<p class="ovol gold" style="padding: 5px 10px;"><fmt:message key="dashboard_p_unitTestFail"/></p>
-				<p class="ovol blue" style="padding: 5px 10px;"><fmt:message key="dashboard_p_compileSuccess"/></p>
-			</div> -->
             <%@ include file="projectLight.jsp" %>
             <table class="table table-striped" style="margin-top: 20px; width: 100%">
                 <thead>
@@ -304,7 +205,7 @@
             var name = student.name;
 
             content = '<tr id="allProject">';
-            content += '<td width="10%" id="allProject"><a href="dashStuChoosed.jsp?studentId=' + gitlabId + '">' + userName + "  " + name + '</a></td>';
+            content += '<td width="10%" style="text-align:center" id="allProject"><a href="dashStuChoosed.jsp?studentId=' + gitlabId + '">' + userName + "  " + name + '</a></td>';
 
             if(commits.length > 0){
                 for(j in projects) {
@@ -326,12 +227,14 @@
                     }
 
                     if(pName == undefined || pName == 'N/A') {
-                        content += '<td style="padding: 10px 0px 0px 30px;">';
-                        content += '<p>' + pName + '</p></td>';
+                        content += '<td style="text-align:center">';
+                        content += '<p id="' + userName + '_' + hwName + '" class="' + color + '" style="margin:0px auto;">';
+                        content += commit;
+                        content += '</p></td>';
                     } else {
                         pName = hwName;
-                        content += '<td style="align:center">';
-                        content += '<p id="' + userName + '_' + hwName + '" class="' + color + '">';
+                        content += '<td  style="text-align:center">';
+                        content += '<p id="' + userName + '_' + hwName + '" class="' + color + '" style="margin:0px auto;">';
                         content += '<a id="' + userName + '_' + hwName + '_commit" href="dashProjectChoosed.jsp?userId=' + gitlabId + '&proName=' + hwName + '">';
                         content += commit;
                         content += '</a>';
@@ -343,8 +246,9 @@
             } else {
             	console.log("is N/A");//temp
                 for (var i=0; i<projectCount; i++) {
-                    content += '<td style="padding: 10px 0px 0px 30px;">';
-                    content += '<p>N/A</p></td>';
+                	content += '<td style="text-align:center">';
+                    content += '<p id="' + userName + '_' + hwName + '" class="circle NB" style="margin:0px auto;">';
+                    content += '</p></td>';
                 }
                 content += '</tr>';
                 $('#dashboard').append(content)

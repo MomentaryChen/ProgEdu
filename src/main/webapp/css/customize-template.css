@@ -198,7 +198,7 @@ a:hover {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 972px;
+  width: 100%;
 }
 .span16 {
   width: 972px;
@@ -10126,7 +10126,7 @@ body > #body-container {
     width: 1106px;
   }
   body .body-nav.body-nav-vertical ~ .page.container .span16 {
-    width: 1106px;
+    width: 1800px;
   }
   body .body-nav.body-nav-vertical ~ .page.container .span15 {
     width: 1035px;

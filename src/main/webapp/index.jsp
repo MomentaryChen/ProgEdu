@@ -21,25 +21,8 @@
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript" ></script>
     <link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
-	<script src="./js/bootstrap/bootstrap-transition.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-alert.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-modal.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-dropdown.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-scrollspy.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-tab.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-tooltip.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-popover.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-button.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-collapse.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-carousel.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-typeahead.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-affix.js" type="text/javascript" ></script>
-	<script src="./js/bootstrap/bootstrap-datepicker.js" type="text/javascript" ></script>
-	<script src="./js/jquery/jquery-tablesorter.js" type="text/javascript" ></script>
-	<script src="./js/jquery/jquery-chosen.js" type="text/javascript" ></script>
-	<script src="./js/jquery/virtual-tour.js" type="text/javascript" ></script>
-    <style>
-    </style>
+	
+
     <script type="text/javascript">
 	  var Msg ='<%=session.getAttribute("enterError")%>';
 	  if (Msg != "null") {
