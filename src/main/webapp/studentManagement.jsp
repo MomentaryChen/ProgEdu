@@ -1,5 +1,9 @@
-<%@ page language="java" %>
+<%@ page language="java"%>
+<%@ page import="fcu.selab.progedu.config.CourseConfig"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+
+<%@ include file="language.jsp"%>
 
 <%
 	if(session.getAttribute("username") == null || session.getAttribute("username").toString().equals("")){
@@ -8,23 +12,111 @@
 	session.putValue("page", "studentManagement");
 %>
 
-<%@ include file="language.jsp"%>
+<c:url value="test_http.jsp" var="displayLan">
+  <c:param name="Language" value="tw" />
+</c:url>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<title>ProgEdu2</title>
+	<meta charset="UTF-8">
 	<%@ include file="header.jsp" %>
-	<style>
-	.form-group{
-		padding-top:5px;
-	}
-	
+	<style type="text/css">
+		.quarter-div{
+            width: 50%;
+            height:100%;
+            float: left;
+            overflow: 	hidden;
+            
+        }
+        .bottom{
+        	margin-bottom: 25px;
+        	position: relative;
+        }
 	</style>
-	
 </head>
 
 <body>
-	
+	<div id='main'>
+		<div class="alert alert-block alert-info">
+	          <p><fmt:message key="teacherGroup_th_student"/></p>
+	     </div>
+		 <section id="my-account-security-form" class="page container">
+			 <div class="quarter-div">
+		        <form id="userSecurityForm" class="form-horizontal" action="dashboard.html" method="post">
+		            <div class="container">
+		                <div class="row">
+		                    <div id="acct-password-row" class="span9">
+		                        <fieldset>
+		                            <legend><fmt:message key="teacherManageStudent_h3_newAStudent"/></legend><br>
+		                            <div class="control-group ">
+		                            	<label class="control-label">Student's name:</label>
+		                                <div class="controls">
+											<input type="text" class="span4" name="studentName">   
+		                                </div>
+		                            </div>
+		                            <div class="control-group ">
+		                                <label class="control-label">Student's Id:</label>						
+		                                <div class="controls">
+		                                    <input type="text" class="span4" name="studentId">
+		                                </div>
+		                            </div>
+		                            <div class="control-group ">
+		                            	<label class="control-label">Student's email:</label>
+		                            	<div class="controls">
+											<input type="text" class="span4" name="studentEmail">
+										</div>
+		                            </div>
+		                        </fieldset>
+		                    </div>
+		                </div>
+		            </div>
+		            <footer class="form-actions bottom">
+	                    <button id="submit-button" type="submit" class="btn btn-primary" name="action" value="CONFIRM">Save</button>
+	                    <button type="submit" class="btn" name="action" value="CANCEL">Cancel</button>
+		            </footer>
+		        </form>
+	        </div>
+	        <div class="quarter-div">
+		        <form id="userSecurityForm" class="form-horizontal" action="dashboard.html" method="post">
+		            <div class="container">
+		                <div class="row">
+		                    <div id="acct-password-row1" class="span9">
+		                        <fieldset>
+		                            <legend><fmt:message key="teacherManageStudent_h3_newAllStudent"/></legend>
+		                            <div class="control-group">	
+		                            	<label class="control-label"><strong><fmt:message key="teacherManageStudent_h4_uploadStudent"/>:</strong></label>
+		                            	<div class="controls">
+											<a href="StudentTemplate.csv" class="btn" style="background-color:#F5F5F5; color: #292b2c; border-color: #ccc">
+												<fmt:message key="teacherManageStudent_a_downloadEnrollmentTemplate"/>
+											</a>
+										</div>
+									</div>
+									
+									<div class="control-group">	
+										<label class="control-label"><strong><fmt:message key="teacherManageStudent_h4_uploadStudent"/>:</strong></label>
+										<div class="controls">
+											<input type="file" name="file" class="span4" >
+										</div>
+									</div>
+									 <div class="control-group" style="visibility:hidden">
+		                            	<label class="control-label">Student's name:</label>
+		                                <div class="controls">
+											<input type="text" class="span4" name="studentName">   
+		                                </div>
+		                            </div>
+		                        </fieldset>
+		                    </div>
+		                </div>
+		            </div>
+		            <footer id="submit-actions" class="form-actions bottom">
+	                    <input type="submit" class="btn btn-primary" style="border: gray solid 1px" value="Upload" onclick="load();" style="margin-top:10px;">
+		            </footer>
+		        </form>
+	        </div>
+		</section>
+	</div>
 <script>
 	$(document).ready(function() {
 		$("#addAllStudent").submit(function(evt) {
@@ -80,109 +172,5 @@
         });
     });
 </script>
-	
-	<script type="text/javascript">
-        function load() {
-            document.getElementById("loader").style.display = "block";
-            document.getElementById("loadingBackground").style.display = "block";
-        }
-	</script>
-
-	<div class="main" style="padding-top: 100px;">
-		<div style="padding-left: 300px;padding-right: 300px;text-align:center;">
-			<br>
-			<div class="box">
-				<div class="box-header">
-					<i class="icon-book"></i>
-					<h5><strong><fmt:message key="teacherManageStudent_h3_newAllStudent"/></strong></h5>
-				</div>
-				<div class="col-md-3">
-					<a href="StudentTemplate.csv" class="btn btn-default" style="background-color:#F5F5F5; color: #292b2c; border-color: #ccc">
-						<fmt:message key="teacherManageStudent_a_downloadEnrollmentTemplate"/>
-					</a>
-				</div>
-				<form id="addAllStudent">
-					<div class="card-block" style="padding: 20px 20px 20px 20px;">
-						<div class="form-group">						
-								<h5><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; <fmt:message key="teacherManageStudent_h4_uploadStudent"/></h5>
-								Select File to Upload:
-								<input type="file" name="file" style="margin-left: 10px;">
-								<br>
-						</div>
-					</div> 
-					<div class="box-footer">
-						<input type="submit" class="btn btn-primary" style="border: gray solid 1px" value="Upload" onclick="load();" style="margin-top:10px;">
-					</div>
-				</form>	
-					
-			</div>
-		</div>
-		
-		<div style="padding-left: 300px;padding-right: 300px;text-align:center;padding-top: 20px;">
-			<div class="box">
-				<div class="box-header">
-					<i class="icon-book"></i>
-					<h5><strong><fmt:message key="teacherManageStudent_h3_newAStudent"/></strong></h5>
-				</div>
-				<form id="newStudent" class="form-inline">
-					<div class="box-content" style="padding: 20px 20px 20px 20px;">
-						<div class="form-group">
-								<div class="form-group row" style>
-									<label class="col-sm-2 col-form-label">Student's name:</label>
-									<input type="text" class="form-control" name="studentName">
-								</div>
-								<div class="form-group row" >
-									<label class="col-sm-2 col-form-label">Student's Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-									<input type="text" class="form-control" name="studentId">
-								</div>
-								<div class="form-group row" >
-									<label class="col-sm-2 col-form-label">Student's email:</label>
-									<input type="text" class="form-control" name="studentEmail">
-								</div>
-								<div class="form-group">
-								</div>
-						</div>
-					</div>
-					<div class="box-footer">
-						<input type="submit" class="btn btn-primary" style="border: gray solid 1px;" value="Submit" onclick="load();" style="margin-top:10px;">
-					</div>
-				</form>
-			</div>
-		</div>
-		
-		<div style="padding-left: 300px;padding-right: 300px;text-align:center;padding-top: 20px;">
-		<div class="box">
-			<div class="box-header">
-				<i class="icon-book"></i>
-				<h5><strong><fmt:message key="teacherManageStudent_h3_deleteAStudent"/></strong></h5>
-			</div>
-			<form id="newStudent" class="form-inline">
-				<div class="box-content" style="padding: 20px 20px 20px 20px;">
-					<div class="form-group">
-							<div class="form-group row">
-								<label class="col-sm-2 col-form-label">Student's name:</label>
-								<input type="text" class="form-control" name="studentName">
-							</div>
-							<div class="form-group row" >
-								<label class="col-sm-2 col-form-label">Student's Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>	
-								<input type="text" class="form-control" name="studentId">
-
-							</div>
-							<div class="form-group row" >
-								<label class="col-sm-2 col-form-label">Student's email:</label>
-								<input type="text" class="form-control" name="studentEmail">
-							</div>
-							<div class="form-group">
-							</div>
-					</div>
-				</div>
-			
-				<div class="box-footer">
-					<input type="submit" class="btn btn-primary" style="border: gray solid 1px;" value="Delete" onclick="load();" style="margin-top:10px;">
-				</div>
-			</form>
-		</div>
-	</div>
-	</div>
-	
 </body>
+</html>
