@@ -90,15 +90,6 @@
         #allProject {
             margin: 10px 0px 0px 0px;
         }
-
-        #main {
-            height: 100%;
-            margin-left: 200px;
-            overflow-x: scroll;
-            padding-top: 20px;
-            width: auto;
-        }
-
         #inline {
             margin: 20px;
         }
@@ -110,7 +101,7 @@
         	text-align: center;
         }
     </style>
-
+	
     <link rel="shortcut icon" href="img/favicon.ico"/>
     <link rel="bookmark" href="img/favicon.ico"/>
     <title>ProgEdu4Web</title>
@@ -145,11 +136,10 @@
     <div id="loader"></div>
 </div>
 
-<div class="container-fluid" id="main" style="width: 80%; margin: auto;text-align:center;overflow: auto">
-    <h1 style="margin-bottom: 20px;"><fmt:message key="dashboard_a_overview"/></h1>
+<div class="container-fluid" id="main" >
+    <h1 style="margin-bottom: 20px;"><fmt:message key="dashboard_li_studentProjects"/></h1>
     <!-- ---------------------------- Student Project ------------------------------- -->
     <div class="card" style="width: fit-content;margin: auto;text-align:center;">
-        <h4 id="Student Projects" class="card-header"><i class="fa fa-table" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_li_studentProjects"/></h4>
         <div class="card-block"">
             <%@ include file="projectLight.jsp" %>
             <table class="table table-striped" style="margin-top: 20px; width: 100%">
@@ -227,9 +217,9 @@
                     }
 
                     if(pName == undefined || pName == 'N/A') {
-                        content += '<td style="text-align:center">';
-                        content += '<p id="' + userName + '_' + hwName + '" class="' + color + '" style="margin:0px auto;">';
-                        content += commit;
+                    	content += '<td style="text-align:center">';
+                        content += '<p id="' + userName + '_' + hwName + '" >';
+                        content +="N/A"
                         content += '</p></td>';
                     } else {
                         pName = hwName;
@@ -247,7 +237,8 @@
             	console.log("is N/A");//temp
                 for (var i=0; i<projectCount; i++) {
                 	content += '<td style="text-align:center">';
-                    content += '<p id="' + userName + '_' + hwName + '" class="circle NB" style="margin:0px auto;">';
+                    content += '<p id="' + userName + '_' + hwName + '" >';
+                    content +="N/A"
                     content += '</p></td>';
                 }
                 content += '</tr>';

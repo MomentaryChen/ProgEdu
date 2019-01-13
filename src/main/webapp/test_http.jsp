@@ -5,101 +5,172 @@
 
 <%@ include file="language.jsp"%>
 
+<%
+	if(session.getAttribute("username") == null || session.getAttribute("username").toString().equals("")){
+		response.sendRedirect("index.jsp");
+	}
+	session.putValue("page", "studentManagement");
+%>
+
 <c:url value="test_http.jsp" var="displayLan">
   <c:param name="Language" value="tw" />
 </c:url>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>PPPPPPPPP</title>
-<meta charset="UTF-8">
-
-<link rel="shortcut icon" href="img/favicon.ico" />
-<link rel="bookmark" href="img/favicon.ico" />
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"
-  id="bootstrap-css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
-  
-<style type="text/css">
-body {
-	font-family: Microsoft JhengHei;
-	background: url('./img/login-bg.jpg') no-repeat center
-		center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	padding-top: 180px;
-}
-
-.login-form {
-	margin-top: 60px;
-}
-
-form[role=login] {
-	color: #5d5d5d;
-	background: #f2f2f2;
-	padding: 26px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
-
-form[role=login] img {
-	display: block;
-	margin: 0 auto;
-	margin-bottom: 35px;
-}
-
-form[role=login] input, form[role=login] button {
-	font-size: 18px;
-	margin: 16px 0;
-}
-
-form[role=login]>div {
-	text-align: center;
-}
-
-#course-name {
-  text-align: center;
-}
-</style>
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-
-<script type="text/javascript">
-  var Msg ='<%=session.getAttribute("enterError")%>';
-  if (Msg != "null") {
-    function alertName() {
-      alert("Your username or password is incorrect!");
-    }
-  }
-</script>
+	<title>ProgEdu2</title>
+	<meta charset="UTF-8">
+	<%@ include file="header.jsp" %>
+	<style type="text/css">
+		.quarter-div{
+            width: 50%;
+            height:100%;
+            float: left;
+            overflow: 	hidden;
+            
+        }
+        .bottom{
+        	margin-bottom: 25px;
+        	position: relative;
+        }
+	</style>
 </head>
 
 <body>
-
-  <div class="container">
-    <div class="row" id="pwd-container">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <section class="login-form">
-        <form method="post" action="AfterTest" role="login">
-          <h4 id="course-name"><%=CourseConfig.getInstance().getCourseFullName()%></h4>
-          <h4>TEST:${username}</h4>
-          <input type="hidden" name="grant_type" value="password">
-          <input type="text" name="username" placeholder="user name" required autofocus class="form-control input-lg"/> 
-          <input type="password" name="password" class="form-control input-lg" id="password" placeholder="password" required />
-          <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
-        </form>
-        </section>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
-  </div>
+	<div id='main'>
+		<div class="alert alert-block alert-info">
+	          <p><fmt:message key="teacherGroup_th_student"/></p>
+	     </div>
+		 <section id="my-account-security-form" class="page container">
+			 <div class="quarter-div">
+		        <form id="userSecurityForm" class="form-horizontal" action="dashboard.html" method="post">
+		            <div class="container">
+		                <div class="row">
+		                    <div id="acct-password-row" class="span9">
+		                        <fieldset>
+		                            <legend><fmt:message key="teacherManageStudent_h3_newAStudent"/></legend><br>
+		                            <div class="control-group ">
+		                            	<label class="control-label">Student's name:</label>
+		                                <div class="controls">
+											<input type="text" class="span4" name="studentName">   
+		                                </div>
+		                            </div>
+		                            <div class="control-group ">
+		                                <label class="control-label">Student's Id:</label>						
+		                                <div class="controls">
+		                                    <input type="text" class="span4" name="studentId">
+		                                </div>
+		                            </div>
+		                            <div class="control-group ">
+		                            	<label class="control-label">Student's email:</label>
+		                            	<div class="controls">
+											<input type="text" class="span4" name="studentEmail">
+										</div>
+		                            </div>
+		                        </fieldset>
+		                    </div>
+		                </div>
+		            </div>
+		            <footer class="form-actions bottom">
+	                    <button id="submit-button" type="submit" class="btn btn-primary" name="action" value="CONFIRM">Save</button>
+	                    <button type="submit" class="btn" name="action" value="CANCEL">Cancel</button>
+		            </footer>
+		        </form>
+	        </div>
+	        <div class="quarter-div">
+		        <form id="userSecurityForm" class="form-horizontal" action="dashboard.html" method="post">
+		            <div class="container">
+		                <div class="row">
+		                    <div id="acct-password-row1" class="span9">
+		                        <fieldset>
+		                            <legend><fmt:message key="teacherManageStudent_h3_newAllStudent"/></legend>
+		                            <div class="control-group">	
+		                            	<label class="control-label"><strong><fmt:message key="teacherManageStudent_h4_uploadStudent"/>:</strong></label>
+		                            	<div class="controls">
+											<a href="StudentTemplate.csv" class="btn" style="background-color:#F5F5F5; color: #292b2c; border-color: #ccc">
+												<fmt:message key="teacherManageStudent_a_downloadEnrollmentTemplate"/>
+											</a>
+										</div>
+									</div>
+									
+									<div class="control-group">	
+										<label class="control-label"><strong><fmt:message key="teacherManageStudent_h4_uploadStudent"/>:</strong></label>
+										<div class="controls">
+											<input type="file" name="file" class="span4" >
+										</div>
+									</div>
+									 <div class="control-group" style="visibility:hidden">
+		                            	<label class="control-label">Student's name:</label>
+		                                <div class="controls">
+											<input type="text" class="span4" name="studentName">   
+		                                </div>
+		                            </div>
+		                        </fieldset>
+		                    </div>
+		                </div>
+		            </div>
+		            <footer id="submit-actions" class="form-actions bottom">
+	                    <input type="submit" class="btn btn-primary" style="border: gray solid 1px" value="Upload" onclick="load();" style="margin-top:10px;">
+		            </footer>
+		        </form>
+	        </div>
+		</section>
+	</div>
+<script>
+	$(document).ready(function() {
+		$("#addAllStudent").submit(function(evt) {
+			evt.preventDefault();
+			var formData = new FormData($(this)[0]);
+			$.ajax({
+				url : 'webapi/user/upload',
+				type : 'POST',
+				data : formData,
+				async : true,
+				cache : false,
+				contentType : false,
+				enctype : 'multipart/form-data',
+				processData : false,
+				success : function(response) {
+					alert("uploaded!");
+					top.location.href = "studentManagement.jsp";
+				}, 
+				error : function(a, b, c) {
+				    console.log(a.status, b, c)
+					alert("failed!");
+                    location.reload();
+				}
+			});
+			return false;
+		});
+	});
+	
+    $(document).ready(function() {
+        $("#newStudent").submit(function(evt) {
+            evt.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                url : 'webapi/user/new',
+                type : 'POST',
+                data : formData,
+                async : true,
+                cache : false,
+                contentType : false,
+                enctype : 'multipart/form-data',
+                processData : false,
+                success : function(response) {
+                    alert("uploaded!");
+                    top.location.href = "studentManagement.jsp";
+                },
+                error : function(a, b, c) {
+                    console.log(a.status, b, c)
+                    alert("failed!");
+                    // location.reload();
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

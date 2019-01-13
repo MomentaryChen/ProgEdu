@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="utf-8"%>
 
-
 <head>
 	<link rel="shortcut icon" href="img/favicon.ico" />
 	<link rel="bookmark" href="img/favicon.ico" />
@@ -9,6 +8,21 @@
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
 	<link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
+	<style type="text/css">
+		#main {
+		            height: 		80%;
+		            padding-top: 	120px;
+		            width: 			80%; 
+		            margin: 		auto;
+		            text-align: 	center;
+		            overflow: 		hidden;
+
+		        }
+		body{
+			overflow-x: scroll;
+			height: fit-content;
+		}
+	</style>
 </head>
 
 <body>
@@ -88,7 +102,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="./assignmentManagement.jsp">
 						<i class="icon-map-marker icon-large"></i> Map It
 					</a>
 				</li>

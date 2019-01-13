@@ -17,11 +17,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<title>ProgEdu2</title>
+	<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+	<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" >
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<style type="text/css">
-		body{
-			overflow-x: scroll;
-			height: fit-content;
-		}
 		#editModal{
 			overflow-x: auto; !important
 		}
@@ -84,19 +85,11 @@
 			from{ bottom:-100px; opacity:0 }
 			to{ bottom:0; opacity:1 }
 		}
-		body{
-			height: 100%;
-		}
 	</style>
-	<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-	<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 	
-
-	<link rel="shortcut icon" href="img/favicon.ico"/>
-	<link rel="bookmark" href="img/favicon.ico"/>
-	<title>ProgEdu</title>
+	
 </head>
-<body id="body">
+<body>
 	<%@ include file="header.jsp" %>
 	<script>
 	$(document).ready(function() {
@@ -290,11 +283,11 @@
 		<div id="loader"></div>
 	</div>
 	
-	<div class="container" style="margin-top: 30px; height: fit-content">
-		<button class="btn btn-outline-secondary" name="hw_list" onclick="changeDisplay(this)">
+	<div class="container-fluid" id="main" >
+		<button class="btn" name="hw_list" onclick="changeDisplay(this)">
 			<fmt:message key="teacherManageHW_hw_list"/>
 		</button>
-		<button class="btn btn-outline-secondary" name="distributeHW" onclick="changeDisplay(this)">
+		<button class="btn" name="distributeHW" onclick="changeDisplay(this)">
 			<fmt:message key="teacherManageHW_h3_distributeHW"/>
 		</button>
 		<div class="card" id="hw_list" style="margin-top: 20px;">
