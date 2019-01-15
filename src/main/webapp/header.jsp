@@ -16,10 +16,9 @@
 		            margin: 		auto;
 		            text-align: 	center;
 		            overflow: 		hidden;
-
 		        }
 		body{
-			overflow-x: scroll;
+			overflow-x: hidden;
 			height: fit-content;
 		}
 	</style>
@@ -78,10 +77,14 @@
 
 					</ul>
 					<ul class="nav pull-right">
+						<a href="dropdown-menu show">language</a>
+						<div class="dropdown-menu show">
+							<a href="dashboard.jsp?lang=zh">Chinese</a>
+							<a href="dashboard.jsp?lang=eh">English</a>
+						</div>
 						<li>
 							<a href="Index.jsp">Logout</a>
 						</li>
-
 					</ul>
 				</div>
 			</div>
@@ -98,22 +101,12 @@
 				</li>
 				<li>
 					<a href="./studentManagement.jsp">
-						<i class="icon-calendar icon-large"></i> StudentManager
+						<i class="icon-calendar icon-large"></i> Student
 					</a>
 				</li>
 				<li>
 					<a href="./assignmentManagement.jsp">
-						<i class="icon-map-marker icon-large"></i> Map It
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-tasks icon-large"></i> Widgets
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<i class="icon-cogs icon-large"></i> Settings
+						<i class="icon-map-marker icon-large"></i> Assignment
 					</a>
 				</li>
 				<li>
