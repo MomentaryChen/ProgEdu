@@ -8,8 +8,7 @@
 <%@ page import="fcu.selab.progedu.config.JenkinsConfig"%>
 <%@ page
 	import="fcu.selab.progedu.db.UserDbManager, fcu.selab.progedu.db.ProjectDbManager"%>
-<%@ page
-	import="fcu.selab.progedu.data.User, fcu.selab.progedu.data.Project"%>
+<%@ page import="fcu.selab.progedu.data.User, fcu.selab.progedu.data.Project"%>
 <%@ page import="org.gitlab.api.models.*"%>
 <%@ page import="java.util.*, fcu.selab.progedu.conn.Dash"%>
 <%@ page import="fcu.selab.progedu.jenkins.JobStatus"%>
@@ -104,10 +103,9 @@ div.tab_container .tab_content h2 {
 <link rel="bookmark" href="img/favicon.ico" />
 <title>ProgEdu4Web</title>
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
-<%@ include file="header.jsp"%>
-
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<%
 	  Conn conn = Conn.getInstance();
 

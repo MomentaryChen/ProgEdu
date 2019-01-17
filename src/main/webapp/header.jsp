@@ -35,53 +35,15 @@
 				</button>
 				<a href="dashboard.jsp" class="brand"><i class="icon-leaf">ProgEdu2</i></a>
 				<div id="app-nav-top-bar" class="nav-collapse" >
-					<ul class="nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">TRY ME!
-								<b class="caret hidden-phone"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="dashboard.html">Dashboard</a>
-								</li>
-								<li>
-									<a href="form.html">Form</a>
-								</li>
-								<li>
-									<a href="custom-view.html">Custom View</a>
-								</li>
-								<li>
-									<a href="login.html">Login Page</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">CHANGE NAV BAR
-								<b class="caret hidden-phone"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="demo-horizontal-nav.html">Horizontal</a>
-								</li>
-								<li>
-									<a href="demo-horizontal-fixed-nav.html">Horizontal Fixed</a>
-								</li>
-								<li>
-									<a href="demo-vertical-nav.html">Vertical</a>
-								</li>
-								<li>
-									<a href="demo-vertical-fixed-nav.html">Vertical Fixed</a>
-								</li>
-							</ul>
-						</li>
-
-					</ul>
 					<ul class="nav pull-right">
-						<a href="dropdown-menu show">language</a>
-						<div class="dropdown-menu show">
-							<a href="dashboard.jsp?lang=zh">Chinese</a>
-							<a href="dashboard.jsp?lang=eh">English</a>
-						</div>
+						<li>
+							<a href="dropdown-menu show">language</a>
+							<div class="dropdown-menu show" style="display:none">
+								<a href="dashboard.jsp?lang=zh">Chinese</a>
+								<a href="dashboard.jsp?lang=eh">English</a>
+							</div>
+						</li>
+						
 						<li>
 							<a href="Index.jsp">Logout</a>
 						</li>
@@ -110,8 +72,8 @@
 					</a>
 				</li>
 				<li>
-					<a href="#">
-						<i class="icon-list-alt icon-large"></i> Forms
+					<a href="./groupManagement.jsp">
+						<i class="icon-list-alt icon-large"></i> Group
 					</a>
 				</li>
 				<li>

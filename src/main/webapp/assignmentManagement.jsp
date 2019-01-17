@@ -336,11 +336,8 @@ to {
 
 	<div class="container-fluid" id="main">
 		<div class="button-bar" style="text-align:right;">
-			<button class="btn" name="hw_list" onclick="changeDisplay(this)">
-				<fmt:message key="teacherManageHW_hw_list" />
-			</button>
-			<button class="btn" name="distributeHW" onclick="changeDisplay(this)">
-				<fmt:message key="teacherManageHW_h3_distributeHW" />
+			<button class="btn btn-primary" name="distributeHW">
+				<a href="./addAssignment.jsp" style="color:#ffffff"><fmt:message key="teacherManageHW_h3_distributeHW" /></a>
 			</button>
 		</div>
 		<div class="card" id="hw_list" style="margin-top: 20px;">
