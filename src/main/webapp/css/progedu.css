@@ -1,0 +1,134 @@
+@charset "BIG5";
+
+#editModal {
+	overflow-x: auto;
+	!
+	important
+}
+#main {
+    padding-top: 	120px;
+    width: 			80%; 
+    margin: 		auto;
+    text-align: 	center;
+}
+body{
+		overflow-x: hidden;
+		height: fit-content;
+	}
+/* Center the loader */
+#loadingBackground {
+	position: absolute;
+	top: 0;
+	bottom: 0%;
+	left: 0;
+	right: 0%;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 9999;
+	display: none;
+	text-align: center;
+	width: 100%;
+	padding-top: 25px;
+}
+#loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 9999;
+	width: 150px;
+	height: 150px;
+	margin: -75px 0 0 -75px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+	position: relative;
+	-webkit-animation-name: animatebottom;
+	-webkit-animation-duration: 1s;
+	animation-name: animatebottom;
+	animation-duration: 1s
+}
+.fileinput-button {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+.fileinput-button input {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	opacity: 0;
+	-ms-filter: 'alpha(opacity=0)';
+}
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.change_tab {
+	clear: left;
+	margin: 10px 0;
+}
+
+ul.tabs {
+	width: 100%;
+	height: 32px;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+}
+
+ul.tabs li {
+	float: left;
+	height: 31px;
+	line-height: 31px;
+	overflow: hidden;
+	position: relative;
+	margin-bottom: -1px; /* 讓 li 往下移來遮住 ul 的部份 border-bottom */
+	border: 1px solid #999;
+	border-left: none;
+	background: #e1e1e1;
+}
+
+ul.tabs li a {
+	display: block;
+	padding: 0 20px;
+	color: #000;
+	border: 1px solid #fff;
+	text-decoration: none;
+}
+
+ul.tabs li a:hover {
+	background: #ccc;
+}
+
+ul.tabs li.active {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+
+ul.tabs li.active a:hover {
+	background: #fff;
+}
+
+div.tab_container {
+	clear: left;  
+	border: 1px solid #999;
+	border-top: none;
+	background: #fff;
+	border-bottom-style:: none;
+}
+
+div.tab_container .tab_content {
+	padding: 20px;
+}
+
+div.tab_container .tab_content h2 {
+	margin: 0 0 40px;
+}

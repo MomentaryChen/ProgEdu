@@ -17,9 +17,6 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>Insert title here</title>
-<%@ include file="language.jsp"%>
-<%@ include file="header.jsp"%>
 <script src="http://js.nicedit.com/nicEdit-latest.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
@@ -32,149 +29,17 @@
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
-<style type="text/css">
-#editModal {
-	overflow-x: auto;
-	!
-	important
-}
-/* Center the loader */
-#loadingBackground {
-	position: absolute;
-	top: 0;
-	bottom: 0%;
-	left: 0;
-	right: 0%;
-	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 9999;
-	display: none;
-	text-align: center;
-	width: 100%;
-	padding-top: 25px;
-}
 
-#loader {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	z-index: 9999;
-	width: 150px;
-	height: 150px;
-	margin: -75px 0 0 -75px;
-	border: 16px solid #f3f3f3;
-	border-radius: 50%;
-	border-top: 16px solid #3498db;
-	width: 120px;
-	height: 120px;
-	-webkit-animation: spin 2s linear infinite;
-	animation: spin 2s linear infinite;
-}
-
-@
--webkit-keyframes spin { 0% {
-	-webkit-transform: rotate(0deg);
-}
-
-100%
-{
--webkit-transform
-
-
-:
-
- 
-
-rotate
-
-
-(360
-deg
-);
-
- 
-
-}
-}
-@
-keyframes spin { 0% {
-	transform: rotate(0deg);
-}
-
-100%
-{
-transform
-
-
-:
-
- 
-
-rotate
-
-
-(360
-deg
-);
-
- 
-
-}
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-	position: relative;
-	-webkit-animation-name: animatebottom;
-	-webkit-animation-duration: 1s;
-	animation-name: animatebottom;
-	animation-duration: 1s
-}
-
-@
--webkit-keyframes animatebottom {from { bottom:-100px;
-	opacity: 0
-}
-
-to {
-	bottom: 0px;
-	opacity: 1
-}
-
-}
-@
-keyframes animatebottom {from { bottom:-100px;
-	opacity: 0
-}
-
-to {
-	bottom: 0;
-	opacity: 1
-}
-
-}
-.fileinput-button {
-	position: relative;
-	display: inline-block;
-	overflow: hidden;
-}
-
-.fileinput-button input {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	opacity: 0;
-	-ms-filter: 'alpha(opacity=0)';
-}
-</style>
 </head>
 <body>
+	<%@ include file="header.jsp"%>
 	<!--New homework-->
 	<div class="container-fluid" id="main">
 		<div class="card" id="new_hw">
 			<div class="card-header">
 				<h1>
-					<strong><fmt:message
-							key="teacherManageHW_hw_edit_modal_title" /></strong>
+					<fmt:message
+							key="teacherManageHW_hw_edit_modal_title" />
 				</h1>
 			</div>
 			<div class="card-block" style="padding-left:30px;float: left; width: 30%;">

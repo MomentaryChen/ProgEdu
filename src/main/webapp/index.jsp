@@ -32,7 +32,7 @@
 	  }
 	</script>
 </head>
-<body>
+<body style = "background-image: url('./img/login.jpg');">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">

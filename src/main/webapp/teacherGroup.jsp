@@ -20,8 +20,6 @@
 	session.putValue("page", "teacherGroup");
 %>
 
-<%@ include file="language.jsp" %>
-
 <%
 	Conn conn = Conn.getInstance();
 	GitlabConfig gitData = GitlabConfig.getInstance();

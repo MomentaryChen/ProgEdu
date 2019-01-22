@@ -18,9 +18,6 @@
 	}
 	session.putValue("page", "dashStuChoosed");
 %>
-
-<%@ include file="language.jsp" %>
-
 <%
 	String studentId = request.getParameter("studentId");
 	if(null == studentId){

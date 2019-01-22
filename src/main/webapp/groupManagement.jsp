@@ -34,12 +34,10 @@
 <head>
 <link rel="shortcut icon" href="img/favicon.ico" />
 <link rel="bookmark" href="img/favicon.ico" />
-
 <title>ProgEdu</title>
 </head>
 
 <body>
-	<%@ include file="language.jsp"%>
 	<%@ include file="header.jsp"%>
 	<%
 	  Conn conn = Conn.getInstance();
@@ -130,74 +128,17 @@
 						});
 	</script>
 	<div id="main">
-		<div >
-			<h1>專題管理</h1>
-		<div>
-		<div style="width:40%; float: left; text-align: left">
-			<div class="card">
-				<div class="card-header">
-					<h4>
-						<strong><fmt:message key="teacherManageGroup_h3_newGroup" /></strong>
-					</h4>
-				</div>
-				<div class="card-block" style="padding: 20px 20px 20px 20px;">
-					<a href="webapi/group/export" class="btn btn-default"
-						style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc">
-						<i class="fa fa-download" aria-hidden="true"></i> <fmt:message
-							key="teacherManageGroup_a_exportStudent" />
-					</a>
-					<form id="upload" name="upload" style="float: left">
-						<button type="button" class="btn btn-default"
-							style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc"
-							data-toggle="modal" data-target="#exampleModal"
-							data-whatever="@mdo">
-							<i class="fa fa-file-excel-o" aria-hidden="true"></i>
-							<fmt:message key="teacherManageGroup_button_importStudent" />
-						</button>
-						<div class="modal fade" id="exampleModal" tabindex="-1"
-							role="dialog" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="exampleModalLabel">
-											<fmt:message key="teacherManageGroup_h4_importStudent" />
-										</h4>
-									</div>
+		<h1>專題管理</h1>
+		<div class="change_tab">
+			<ul class="tabs" style="margin-left: 0px; margin-bottom: 0px;">
+				<li><a href="#add_one_student"><fmt:message
+							key="teacherManageGroup_h3_newGroup" /></a></li>
+				<li><a href="#add_mul_student"><fmt:message
+							key="teacherManageGroup_h3_importGroup" /></a></li>
+			</ul>
 
-									<div class="modal-body">
-										<div class="form-group">
-											<h4>
-												<fmt:message key="teacherManageGroup_h4_uploadFile" />
-											</h4>
-											<input type="file" name="file" size="50" />
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">
-											<fmt:message key="teacherManageGroup_button_close" />
-										</button>
-										<button type="submit" class="btn btn-primary">
-											<fmt:message key="teacherManageGroup_button_send" />
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card-header">
-					<h4>
-						<strong><fmt:message key="teacherManageGroup_addMember" /></strong>
-					</h4>
-				</div>
-				<div class="card-block" style="padding: 20px 20px 20px 20px;">
+			<div class="tab_container">
+				<div id="add_one_student" class="tab_content" style="display:inline-block;">
 					<form id="addMember" name="select">
 						<table>
 							<tr>
@@ -236,7 +177,65 @@
 							</tr>
 						</table>
 					</form>
+
 				</div>
+				<div id="add_mul_student" class="tab_content">
+					<div style="padding:0px 20px">
+						<a href="webapi/group/export" class="btn btn-default"> <i
+							class="fa fa-download" aria-hidden="true"></i> <fmt:message
+								key="teacherManageGroup_a_exportStudent" />
+						</a>
+					</div>
+					<div style="padding:0px 20px;display:inline-block;" >
+						<form id="upload" name="upload">
+							<button type="button" class="btn btn-default" data-toggle="modal"
+								data-target="#exampleModal" data-whatever="@mdo">
+								<i class="fa fa-file-excel-o" aria-hidden="true"></i>
+								<fmt:message key="teacherManageGroup_button_importStudent" />
+							</button>
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">
+												<span aria-hidden="true">&times;</span> <span
+													class="sr-only">Close</span>
+											</button>
+											<h4 class="modal-title" id="exampleModalLabel">
+												<fmt:message key="teacherManageGroup_h4_importStudent" />
+											</h4>
+										</div>
+
+										<div class="modal-body">
+											<div class="form-group">
+												<h4>
+													<fmt:message key="teacherManageGroup_h4_uploadFile" />
+												</h4>
+												<input type="file" name="file" size="50" />
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">
+												<fmt:message key="teacherManageGroup_button_close" />
+											</button>
+											<button type="submit" class="btn btn-primary">
+												<fmt:message key="teacherManageGroup_button_send" />
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div >
+						<p>範例</p>
+						<img src="./img/group_example.PNG" alt="Smiley face" width="300" style="padding:0px 40px;">
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<script>
@@ -270,38 +269,33 @@
 		</script>
 
 		<div class="container-fluid"
-			style="width:50%; text-align: center; float: left">
+			style="padding-top: 0px; text-align: center;">
 			<!-- ---------------------------- Student Project ------------------------------- -->
-			<div class="box pattern pattern-sandstone">
-				<div class="box-header">
-					<i class="icon-table"></i>
-					<h5>Table</h5>
-				</div>
-				<div class="box-content box-table">
-					<div class="card"
-						style="width: fit-content; margin: auto; text-align: center;">
-						<div class="card-block"">
-							<table class="table table-striped"
-								style="margin-top: 20px; width: 100%">
-								<thead>
-									<tr>
-										<th
-											style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-												key="dashboard_th_studentId" /></th>
-										<th
-											style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-												key="dashboard_th_studentName" /></th>
-										<th
-											style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-												key="dashboard_th_studentMail" /></th>
-									</tr>
-								</thead>
-								<tbody id="dashboard">
+			<div class="card"
+				style="width: fit-content; margin: auto; text-align: center;">
+				<div class="card-block"">
+					<table class="table table-striped"
+						style="margin-top: 20px; width: 100%">
+						<thead>
+							<tr>
+								<th
+									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+										key="dashboard_th_groupName" /></th>
+								<th
+									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+										key="dashboard_th_studentId" /></th>
+								<th
+									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+										key="dashboard_th_studentName" /></th>
+								<th
+									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+										key="dashboard_th_studentMail" /></th>
+							</tr>
+						</thead>
+						<tbody id="dashboard">
 
-								</tbody>
-							</table>
-						</div>
-					</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -353,7 +347,6 @@
 					console.log("False!");
 				}
 			});
-
 			function setData(result) {
 				var content = '';
 				for (i in result) {
@@ -362,8 +355,10 @@
 					var gitlabId = student.gitlabId;
 					var commits = student.commits;
 					var name = student.name;
-
 					content = '<tr id="allProject">';
+					
+					content += '<td width="10%" style="text-align:center" id="ID"><a>456▼</a>'
+							+'</td>';
 					content += '<td width="10%" style="text-align:center" id="ID"><a href="dashStuChoosed.jsp?studentId='
 							+ gitlabId
 							+ '">'
@@ -372,11 +367,10 @@
 					content += '<td width="10%" style="text-align:center" id="userName" >'
 							+ name + '</td>';
 					content += '<td width="10%" style="text-align:center" id="userName" >'
-							+ name + "@o365.fcu.edu.tw" + '</td>';
+							+ userName.toUpperCase() + "@o365.fcu.edu.tw" + '</td>';
 					content += '</tr>';
 					$('#dashboard').append(content)
 				}
-				document.getElementById('loadingBackground').style.display = 'none';
 			}
 		</script>
 	</div>

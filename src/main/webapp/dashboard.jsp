@@ -23,134 +23,14 @@
 			session.putValue("page", "dashboard");
 %>
 
-<%@ include file="language.jsp"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<style type="text/css">
-/* Center the loader */
-#loadingBackground {
-	position: absolute;
-	top: 0;
-	bottom: 0%;
-	left: 0;
-	right: 0%;
-	background-color: rgba(0, 0, 0, 0);
-	z-index: 9999;
-	display: none;
-	text-align: center;
-	width: 100%;
-	padding-top: 25px;
-}
-
-#loader {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	z-index: 9999;
-	width: 150px;
-	height: 150px;
-	margin: -75px 0 0 -75px;
-	border: 16px solid #f3f3f3;
-	border-radius: 50%;
-	border-top: 16px solid #3498db;
-	width: 120px;
-	height: 120px;
-	-webkit-animation: spin 2s linear infinite;
-	animation: spin 2s linear infinite;
-}
-
-@
--webkit-keyframes spin { 0% {
-	-webkit-transform: rotate(0deg);
-}
-
-100%
-{
--webkit-transform
-:
- 
-rotate
-(360deg);
- 
-}
-}
-@
-keyframes spin { 0% {
-	transform: rotate(0deg);
-}
-
-100%
-{
-transform
-:
- 
-rotate
-(360deg);
- 
-}
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-	position: relative;
-	-webkit-animation-name: animatebottom;
-	-webkit-animation-duration: 1s;
-	animation-name: animatebottom;
-	animation-duration: 1s
-}
-
-@
--webkit-keyframes animatebottom {from { bottom:-100px;
-	opacity: 0
-}
-
-to {
-	bottom: 0px;
-	opacity: 1
-}
-
-}
-@
-keyframes animatebottom {from { bottom:-100px;
-	opacity: 0
-}
-
-to {
-	bottom: 0;
-	opacity: 1
-}
-
-}
-body, html {
-	height: 100%;
-	overflow-x: hidden;
-}
-
-#allProject {
-	margin: 10px 0px 0px 0px;
-}
-
-#inline {
-	margin: 20px;
-}
-
-#inline p {
-	display: inline;
-}
-
-.text {
-	text-align: center;
-}
-</style>
-
-<link rel="shortcut icon" href="img/favicon.ico" />
-<link rel="bookmark" href="img/favicon.ico" />
-<title>ProgEdu4Web</title>
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
 </head>
+	
 <body>
+	<%@ include file="./header.jsp"%>
 	<%
 	  Conn conn = Conn.getInstance();
 
@@ -174,7 +54,7 @@ body, html {
 
 				JenkinsApi jenkins = JenkinsApi.getInstance();
 	%>
-	<%@ include file="header.jsp"%>
+	
 	<div id="loadingBackground" style="display: none">
 		<div id="loader"></div>
 	</div>
@@ -183,10 +63,10 @@ body, html {
 		<h1 style="margin-bottom: 20px;">
 			<fmt:message key="dashboard_li_studentProjects" />
 		</h1>
+		<%@ include file="projectLight.jsp"%>
 		<!-- ---------------------------- Student Project ------------------------------- -->
 		<div class="card" style="margin: auto; text-align: center;">
 			<div class="card-block"">
-				<%@ include file="projectLight.jsp"%>
 				<table class="table table-striped"
 					style="margin-top: 20px; width: 100%">
 					<thead>

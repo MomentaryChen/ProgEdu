@@ -4,27 +4,16 @@
 <head>
 	<link rel="shortcut icon" href="img/favicon.ico" />
 	<link rel="bookmark" href="img/favicon.ico" />
-	<title>ProgEdu2</title>
+	<title>ProgEdu</title>
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
 	<link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
-	<style type="text/css">
-		#main {
-		            height: 		80%;
-		            padding-top: 	120px;
-		            width: 			80%; 
-		            margin: 		auto;
-		            text-align: 	center;
-		            overflow: 		hidden;
-		        }
-		body{
-			overflow-x: hidden;
-			height: fit-content;
-		}
-	</style>
+	<link href="./css/progedu.css" type="text/css" media="screen, projection" rel="stylesheet" />
+	
 </head>
 
 <body>
+	<%@ include file="language.jsp"%>
 	<div class="navbar navbar-fixed-top" >
 		<div class="navbar-inner" >
 			<div class="container" >
@@ -77,7 +66,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="./dashboardChart.jsp">
+					<a href="./chart.jsp">
 						<i class="icon-bar-chart icon-large"></i> Charts
 					</a>
 				</li>
