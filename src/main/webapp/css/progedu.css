@@ -132,3 +132,7 @@ div.tab_container .tab_content {
 div.tab_container .tab_content h2 {
 	margin: 0 0 40px;
 }
+
+i.student_icon{
+	content: "\f007";
+}

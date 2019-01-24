@@ -3915,7 +3915,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .brand {
   float: left;
   display: block;
-  padding: 10px 20px 10px;
+  padding: 5px 20px 10px;
   margin-left: -20px;
   font-size: 20px;
   font-weight: 200;
@@ -7239,7 +7239,7 @@ table.tablesorter .headerSortUp:after {
 }
 .nav-page .nav.nav-pills li > a i.icon-large,
 .nav-page .nav.nav-pills li > button i.icon-large {
-  font-size: 28px;
+  font-size: 24px;
   text-align: initial;
 }
 .nav-page .nav.nav-pills li > button {
@@ -7725,11 +7725,12 @@ table.tablesorter .headerSortUp:after {
   border-left: 1px solid #101f29;
   border-right: 1px solid #101f29;
   width: 80px;
+  height: 70px;
   float: left;
 }
 .body-nav.body-nav-horizontal ul li a,
 .body-nav.body-nav-horizontal ul li button {
-  height: 51px;
+  height: 70px;
 }
 .body-nav.body-nav-horizontal.body-nav-fixed {
   position: fixed;
@@ -7738,7 +7739,7 @@ table.tablesorter .headerSortUp:after {
   left: 0;
   margin-bottom: 0;
   margin-top: 0;
-  top: 40px;
+  top: 45px;
   z-index: 921;
 }
 .body-nav ul {

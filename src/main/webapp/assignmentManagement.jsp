@@ -28,9 +28,10 @@
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
+<%@ include file="header.jsp"%>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+
 	<script>
 		$(document).ready(function() {
 			$("#deletetHw").submit(function(evt) {
@@ -228,22 +229,23 @@
 		<div id="loader"></div>
 	</div>
 
-	<div class="container-fluid" id="main">
-		<div class="button-bar" style="text-align:right;">
-			<button class="btn btn-primary" name="distributeHW">
-				<a href="./addAssignment.jsp" style="color:#ffffff"><fmt:message key="teacherManageHW_h3_distributeHW" /></a>
-			</button>
-		</div>
+	<div id="main">
 		<div class="card" id="hw_list" style="margin-top: 20px;">
 			<div class="card-header">
 				<h1 style="margin-bottom: 20px;">
 					<fmt:message key="teacherManageHW_hw_list" />
 				</h1>
 			</div>
+			<div class="button-bar" style="text-align: right;padding-right:20px">
+				<button class="btn btn-primary" name="distributeHW">
+					<a href="./addAssignment.jsp" style="color: #ffffff"><fmt:message
+							key="teacherManageHW_h3_distributeHW" /></a>
+				</button>
+			</div>
 			<div class="card-block" style="padding: 20px 20px 20px 20px;">
 				<table class="table table-striped">
-					<tbody id="dashboard">
-						<tr id="dashboard">
+					<tbody >
+						<tr id="dashboard_list">
 							<th><fmt:message key="teacherManageHW_hw_name" /></th>
 							<th><fmt:message key="teacherManageHW_hw_createTime" /></th>
 							<th><fmt:message key="teacherManageHW_hw_deadline" /></th>

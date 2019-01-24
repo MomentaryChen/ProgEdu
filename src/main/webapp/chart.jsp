@@ -7,10 +7,10 @@
 <meta charset="BIG5">
 <script type="text/javascript"
 	src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
+	<%@ include file="header.jsp"%>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+
 	<div id="main">
 		<h1 style="margin-bottom: 20px;">
 			<fmt:message key="dashboard_li_chart" />
@@ -84,7 +84,8 @@
 				data : [ {
 					type : "splineArea",
 					showInLegend : true,
-					name : "Salaries",
+					name : "編譯失敗",
+					color: $('.S').css("background-color"),
 					yValueFormatString : "$#,##0",
 					xValueFormatString : "MMM YYYY",
 					dataPoints : [ {
@@ -128,6 +129,7 @@
 					type : "splineArea",
 					showInLegend : true,
 					name : "Office Cost",
+					color: $('.CPF').css("background-color"),
 					yValueFormatString : "$#,##0",
 					dataPoints : [ {
 						x : new Date(2016, 2),
@@ -170,10 +172,12 @@
 					type : "splineArea",
 					showInLegend : true,
 					name : "Entertainment",
+					color: $('.CSF').css("background-color"),
+					backgroundColor: "rgba(0, 0, 0, 1)", 
 					yValueFormatString : "$#,##0",
 					dataPoints : [ {
 						x : new Date(2016, 2),
-						y : 45
+						y : 0
 					}, {
 						x : new Date(2016, 3),
 						y : 52
@@ -212,6 +216,7 @@
 					type : "splineArea",
 					showInLegend : true,
 					yValueFormatString : "$#,##0",
+					color: $('.CJF').css("background-color"),
 					name : "Maintenance",
 					dataPoints : [ {
 						x : new Date(2016, 2),
@@ -250,7 +255,50 @@
 						x : new Date(2017, 1),
 						y : 13
 					} ]
-				} ]
+				} ,{
+					type : "splineArea",
+					showInLegend : true,
+					yValueFormatString : "$#,##0",
+					color: $('.NB').css("background-color"),
+					name : "Maintenance",
+					dataPoints : [ {
+						x : new Date(2016, 2),
+						y : 20
+					}, {
+						x : new Date(2016, 3),
+						y : 10
+					}, {
+						x : new Date(2016, 4),
+						y : 0
+					}, {
+						x : new Date(2016, 5),
+						y : 0
+					}, {
+						x : new Date(2016, 6),
+						y : 5
+					}, {
+						x : new Date(2016, 7),
+						y : 6
+					}, {
+						x : new Date(2016, 8),
+						y : 5
+					}, {
+						x : new Date(2016, 9),
+						y : 4
+					}, {
+						x : new Date(2016, 10),
+						y : 1
+					}, {
+						x : new Date(2016, 11),
+						y : 5
+					}, {
+						x : new Date(2017, 0),
+						y : 4
+					}, {
+						x : new Date(2017, 1),
+						y : 2
+					} ]
+				}]
 			});
 			compiler_result.render();
 

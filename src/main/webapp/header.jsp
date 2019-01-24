@@ -2,14 +2,13 @@
     pageEncoding="utf-8"%>
 
 <head>
-	<link rel="shortcut icon" href="img/favicon.ico" />
-	<link rel="bookmark" href="img/favicon.ico" />
+	<link rel="shortcut icon" href="./img/favicon-b.ico" type="image/x-icon"/>
 	<title>ProgEdu</title>
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
 	<link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
 	<link href="./css/progedu.css" type="text/css" media="screen, projection" rel="stylesheet" />
-	
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> 
 </head>
 
 <body>
@@ -17,24 +16,20 @@
 	<div class="navbar navbar-fixed-top" >
 		<div class="navbar-inner" >
 			<div class="container" >
-				<button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="dashboard.jsp" class="brand"><i class="icon-leaf">ProgEdu2</i></a>
+				
+				<a href="dashboard.jsp" class="brand"><img src="./img/favicon-w.ico" style="height:28px;padding-right:5px; "/>ProgEdu2</a>
 				<div id="app-nav-top-bar" class="nav-collapse" >
 					<ul class="nav pull-right">
 						<li>
 							<a href="dropdown-menu show">language</a>
-							<div class="dropdown-menu show" style="display:none">
+							<div class="dropdown-menu" style="display:none">
 								<a href="dashboard.jsp?lang=zh">Chinese</a>
 								<a href="dashboard.jsp?lang=eh">English</a>
 							</div>
 						</li>
 						
 						<li>
-							<a href="Index.jsp">Logout</a>
+							<a href="index.jsp">Logout</a>
 						</li>
 					</ul>
 				</div>
@@ -46,27 +41,27 @@
 		<div class="container" >
 			<ul>
 				<li>
-					<a href="./dashboard.jsp">
+					<a href="./dashboard.jsp" style="padding-top: 20px;">
 						<i class="icon-dashboard icon-large"></i> Dashboard
 					</a>
 				</li>
 				<li>
-					<a href="./studentManagement.jsp">
-						<i class="icon-calendar icon-large"></i> Student
+					<a href="./studentManagement.jsp" style="padding-top: 20px;">
+						<i class="icon-user icon-large"></i> Student
 					</a>
 				</li>
 				<li>
-					<a href="./assignmentManagement.jsp">
-						<i class="icon-map-marker icon-large"></i> Assignment
+					<a href="./assignmentManagement.jsp" style="padding-top: 20px;">
+						<i class="icon-book icon-large"></i> Assignment
 					</a>
 				</li>
 				<li>
-					<a href="./groupManagement.jsp">
+					<a href="./groupManagement.jsp" style="padding-top: 20px;">
 						<i class="icon-list-alt icon-large"></i> Group
 					</a>
 				</li>
 				<li>
-					<a href="./chart.jsp">
+					<a href="./chart.jsp" style="padding-top: 20px;">
 						<i class="icon-bar-chart icon-large"></i> Charts
 					</a>
 				</li>

@@ -27,10 +27,18 @@
 <html>
 <head>
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	crossorigin="anonymous">
+
+<%@ include file="./header.jsp"%>
 </head>
 	
 <body>
-	<%@ include file="./header.jsp"%>
 	<%
 	  Conn conn = Conn.getInstance();
 
@@ -71,6 +79,8 @@
 					style="margin-top: 20px; width: 100%">
 					<thead>
 						<tr>
+							<th width="1%" style="font-weight: 900; visibility:hidden; text-align: center; font-size: 18px"><fmt:message
+									key="dashboard_th_drop" /></th>
 							<th style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
 									key="dashboard_th_studentId" /></th>
 							<th style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
@@ -85,7 +95,6 @@
 						</tr>
 					</thead>
 					<tbody id="dashboard">
-
 					</tbody>
 				</table>
 			</div>
@@ -123,6 +132,8 @@
 			var name = student.name;
 
 			content = '<tr id="allProject">';
+			content += '<td width="5%" style="text-align:center" id="drop" ><i class="fa-user-times icon-small"'
+				+' style="line-height: 25px; color: red;" ></i></td>';
 			content += '<td width="10%" style="text-align:center" id="ID"><a href="dashStuChoosed.jsp?studentId='
 					+ gitlabId + '">' + userName.toUpperCase() + '</a></td>';
 			content += '<td width="10%" style="text-align:center" id="userName" >' + name +'</td>';

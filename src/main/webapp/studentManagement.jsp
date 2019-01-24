@@ -27,9 +27,10 @@
 <head>
 <meta charset="BIG5">
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
+<%@ include file="header.jsp"%>
 </head>
 <body>
-	<%@ include file="header.jsp"%>
+
 	<%
 	  Conn conn = Conn.getInstance();
 
@@ -121,16 +122,13 @@
 						$($defaultLi.find('a').attr('href')).siblings().hide();
 						$('ul.tabs li', $tab).click(
 								function() {
-
 									var $this = $(this), _clickTab = $this
 											.find('a').attr('href');
-
 									$this.addClass('active')
 											.siblings('.active').removeClass(
 													'active');
 									$(_clickTab).stop(false, true).fadeIn()
 											.siblings().hide();
-
 									return false;
 								}).find('a').focus(function() {
 							this.blur();
