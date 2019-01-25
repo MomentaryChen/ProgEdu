@@ -28,15 +28,16 @@
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
+
 <%@ include file="header.jsp"%>
 </head>
 <body>
-
 	<script>
 		$(document).ready(function() {
 			$("#deletetHw").submit(function(evt) {
 				evt.preventDefault();
 				var formData = new FormData($(this)[0]);
+				console.log('delete');
 				$.ajax({
 					url : 'webapi/project/delete',
 					type : 'POST',
@@ -92,9 +93,8 @@
 		function load(target) {
 			var name = target.name;
 			switch (name) {
-			case 'new_btn':
-				var hw_name = document.getElementById('Hw_Name').value;
-				console.log(hw_name)
+			case 'edit_btn':
+				var hw_name = document.getElementById('Edit_Hw_Name').value;
 				if (hw_name !== '' && hw_name !== undefined) {
 					$('#loadingBackground')[0].style.height = $(document)
 							.height()
@@ -123,9 +123,22 @@
 		}
 	</script>
 	<script type="text/javascript">
-		function sendDeleteId(a) {
-			var id = a.id;
+		function sendDeleteId(ob) {
+			var id = ob.id;
 			document.getElementById("del_Hw_Name").value = id;
+			showDeleteModal();
+		}
+		function showDeleteModal() {
+			var $model = $('#deleteModal');
+			$model.removeClass('modal').removeClass('fade');
+			$model.addClass('modal-backdrop');
+			$model.css('opacity', '1').css('background-color',
+					'rgba(255, 255, 255, 0.8)');
+		}
+		function closeDeleteModal() {
+			var $model = $('#deleteModal');
+			$model.remove('modal-backdrop');
+			$model.addClass('modal').addClass('fade');
 		}
 	</script>
 	<script type="text/javascript">
@@ -139,10 +152,23 @@
 
 			var readMe = document.getElementById(id + '_readMe').innerHTML;
 			nicEditors.findEditor('edit_Hw_README').setContent(readMe);
-
-			$('#editHw_card')[0].style.display = 'block';
 			$('#edited_name')[0].innerHTML = '<fmt:message key="teacherManageHW_hw_edit_modal_title"/> ('
 					+ id + ')';
+			showEditModal();
+		}
+
+		function showEditModal() {
+			var $model = $('#editModal');
+			$model.removeClass('modal').removeClass('fade');
+			$model.addClass('modal-backdrop');
+			$model.css('opacity', '1').css('background-color',
+					'rgba(255, 255, 255, 0.5)');
+			$model.children('.modal-dialog').css('width','max-content');
+		}
+		function closeEditModal() {
+			var $model = $('#editModal');
+			$model.remove('modal-backdrop');
+			$model.addClass('modal').addClass('fade');
 		}
 	</script>
 	<script>
@@ -219,13 +245,18 @@
 				$("[name='fileRadio']")[1].checked = false
 			}
 		}
+		
+		function getFileName(files) {
+			$('#fileName').html(files[0].name);
+			console.log($('#file')[0].files[0].name);
+		}
 	</script>
 
 	<%
 	  ProjectDbManager db = ProjectDbManager.getInstance();
 	  List<Project> projects = db.listAllProjects();
 	%>
-	<div id="loadingBackground" style="display: none">
+	<div id="loadingBackground"">
 		<div id="loader"></div>
 	</div>
 
@@ -236,7 +267,8 @@
 					<fmt:message key="teacherManageHW_hw_list" />
 				</h1>
 			</div>
-			<div class="button-bar" style="text-align: right;padding-right:20px">
+			<div class="button-bar"
+				style="text-align: right; padding-right: 20px">
 				<button class="btn btn-primary" name="distributeHW">
 					<a href="./addAssignment.jsp" style="color: #ffffff"><fmt:message
 							key="teacherManageHW_h3_distributeHW" /></a>
@@ -244,7 +276,7 @@
 			</div>
 			<div class="card-block" style="padding: 20px 20px 20px 20px;">
 				<table class="table table-striped">
-					<tbody >
+					<tbody>
 						<tr id="dashboard_list">
 							<th><fmt:message key="teacherManageHW_hw_name" /></th>
 							<th><fmt:message key="teacherManageHW_hw_createTime" /></th>
@@ -276,7 +308,7 @@
 							</a></td>
 							<td class="text-center"><a id="<%=name%>"
 								data-toggle="modal" data-target="#deleteModal"
-								onclick="sendDeleteId(this)"> <i class="fa fa-lg fa-times"
+								onclick="sendDeleteId(this);"> <i class="fa fa-lg fa-times"
 									aria-hidden="true" style="line-height: 25px; color: red;"></i>
 							</a></td>
 						</tr>
@@ -287,176 +319,67 @@
 				</table>
 			</div>
 		</div>
-
-		<!--New homework-->
-		<div class="card" id="new_hw" style="margin-top: 20px; display: none">
-			<div class="card-header">
-				<h1>
-					<fmt:message key="teacherManageHW_hw_edit_modal_title" />
-				</h1>
-			</div>
-			<div class="card-block" style="padding: 20px 20px 20px 20px;">
-				<form id="newHw" style="margin-top: 10px;">
-					<div class="form-group col-md-3" style="padding-left: 0px;">
-						<label for="Hw_Name"><h4>
-								<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
-								<fmt:message key="teacherManageHW_label_hwName" />
-							</h4></label> <input id="Hw_Name" type="text" class="form-control"
-							name="Hw_Name" required="required"
-							placeholder="eg. <%=courseName%>-HW1" required />
-					</div>
-					<%
-					  TimeZone.setDefault(TimeZone.getTimeZone("Asia/Taipei"));
-					  Date now = new Date();
-					  SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-					  String datestring = sdFormat.format(now);
-					%>
-					<div class="form-group" style="width: fit-content">
-						<label for="Hw_Deadline"><h4>
-								<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
-								<fmt:message key="teacherManageHW_label_hwDeadline" />
-							</h4></label> <input id="Hw_Deadline" type="datetime-local"
-							class="form-control" name="Hw_Deadline" required="required"
-							value=<%="\"" + datestring + "\""%> />
-					</div>
-
-					<div class="form-group">
-						<label for="Hw_README"><h4>
-								<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
-								<fmt:message key="teacherManageHW_label_hwReadme" />
-							</h4></label>
-						<textarea id="Hw_README" cols="100" rows="20" name="Hw_README"
-							style="width: 823px; height: 200px;"></textarea>
-					</div>
-
-					<hr>
-
-					<form>
-						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item"><a class="nav-link active"
-								data-toggle="tab" href="#java" role="tab"
-								onclick="changeTab(this)" name="JavaTab">Java</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#android" role="tab" onclick="changeTab(this)"
-								name="AndroidTab">Android</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#web" role="tab" onclick="changeTab(this)" name="WebTab">Web</a></li>
-						</ul>
-						<!-- Tab panes -->
-						<div class="tab-content"
-							style="margin-top: 20px; margin-left: 20px; width: fit-content;">
-
-							<!-- java panes -->
-							<div class="tab-pane active col-md-12" id="java" role="tabpanel">
-								<div class="form-group"
-									style="width: max-content; white-space: nowrap; display: list-item">
-									<label for="fileRadio"><fmt:message
-											key="teacherManageHW_label_zipradio" />&nbsp; &nbsp; </label> <label
-										class="radio-inline"><input type="radio"
-										name="fileRadio" value="Javac" onclick="changeBotton(this)"
-										checked>&nbsp; Javac&nbsp; &nbsp; </label> <label
-										class="radio-inline"><input type="radio"
-										name="fileRadio" value="Maven" onclick="changeBotton(this)">&nbsp;
-										Maven</label> <br> <a href="JavacQuickStart.zip"
-										class="btn btn-default"
-										style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc"
-										id="java_download"><fmt:message
-											key="teacherManageHW_a_downloadJavac" /></a> <a
-										href="MvnQuickStart.zip" class="btn btn-default"
-										style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc; display: none;"
-										id="mvn_download"><fmt:message
-											key="teacherManageHW_a_downloadMaven" /></a> <a
-										href="MvnQuickStartWithoutCheckstyle.zip"
-										class="btn btn-default"
-										style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc; display: none;"
-										id="mvn_no_checkstyle_download"><fmt:message
-											key="teacherManageHW_a_downloadMavenWithoutCheckstyle" /></a>
-								</div>
-							</div>
-
-							<!-- android panes -->
-							<div class="tab-pane col-md-12" id="android" role="tabpanel">
-							</div>
-
-							<!-- web panes -->
-							<div class="tab-pane col-md-12" id="web" role="tabpanel">
-								<div class="form-group"
-									style="width: max-content; white-space: nowrap; display: list-item">
-									<div style="display: none">
-										<label for="fileRadio"><fmt:message
-												key="teacherManageHW_label_zipradio" />&nbsp; &nbsp; </label> <label
-											class="radio-inline"><input type="radio"
-											name="fileRadio" value="Web" onclick="changeBotton(this)"
-											checked>&nbsp; Web&nbsp; &nbsp; </label>
-									</div>
-									<a href="WebQuickStart.zip" class="btn btn-default"
-										style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc"
-										id="java_download"> <fmt:message
-											key="teacherManageHW_a_downloadWeb" /></a>
-								</div>
-							</div>
-
-							<div class="form-group"
-								style="width: max-content; display: list-item; margin-left: 14px;">
-								<label for="file"><fmt:message
-										key="teacherManageHW_label_uploadZip" /></label> <br> <input
-									type="file" accept=".zip" name="file" size="50" width="48" />
-							</div>
-						</div>
-
-						<button type="submit" class="btn btn-info" name="new_btn"
-							onclick="load(this);nicEditors.findEditor('Hw_README').saveContent();">
-							<fmt:message key="teacherManageHW_button_send" />
+	</div>
+	<!-- Edit Modal -->
+	<form id="editHw" style="margin-top: 10px;">
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+			aria-labelledby="editModal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="edited_name">
+							<fmt:message key="teacherManageHW_hw_edit_modal_title" />
+							</strong>
+						</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" onclick=" closeEditModal();">
+							<span aria-hidden="true">&times;</span>
 						</button>
-					</form>
-				</form>
-			</div>
-		</div>
-		<!-- Edit Modal -->
-		<div class="card" id="editHw_card"
-			style="margin-top: 20px; display: none;">
-			<div class="card-header">
-				<h4 id="edited_name">
-					<strong><fmt:message
-							key="teacherManageHW_hw_edit_modal_title" /></strong>
-				</h4>
-			</div>
+					</div>
 
-			<div class="card-block" style="padding: 20px 20px 20px 20px;">
-				<form id="editHw" style="margin-top: 10px;">
-					<input type="hidden" id="Edit_Hw_Name" name="Edit_Hw_Name" />
-					<div class="form-group" style="width: fit-content">
-						<label for="Hw_Deadline"><h4>
-								<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
-								<fmt:message key="teacherManageHW_label_hwDeadline" />
-							</h4></label> <input id="edit_Hw_Deadline" type="datetime-local"
-							class="form-control" name="Hw_Deadline" />
-					</div>
-					<div class="form-group">
-						<label for="Hw_README"><h4>
-								<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
-								<fmt:message key="teacherManageHW_label_hwReadme" />
-							</h4></label>
+					<div class="modal-body">
+						<input type="hidden" id="Edit_Hw_Name" name="Edit_Hw_Name" />
 						<div class="form-group" style="width: fit-content">
-							<textarea id="edit_Hw_README" cols="100" rows="20"
-								name="Hw_README" style="width: 823px; height: 200px;"></textarea>
+							<label for="Hw_Deadline"><h4>
+									<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
+									<fmt:message key="teacherManageHW_label_hwDeadline" />
+								</h4></label> <input id="edit_Hw_Deadline" type="datetime-local"
+								class="form-control" name="Hw_Deadline" />
 						</div>
+						<div class="form-group">
+							<label for="Hw_README"><h4>
+									<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
+									<fmt:message key="teacherManageHW_label_hwReadme" />
+								</h4></label>
+							<div class="form-group" style="width: fit-content">
+								<textarea id="edit_Hw_README" cols="100" rows="20"
+									name="Hw_README" style="width: 823px; height: 200px;"></textarea>
+							</div>
+						</div>
+						<div class="btn btn-success fileinput-button">
+							<label for="file"><fmt:message
+												key="teacherManageHW_label_uploadZip" /></label> <input
+								id="edit_Hw_TestCase" type="file" accept=".zip"
+								name="Hw_TestCase" size="50" width="48" onchange="getFileName(this.files);"/>
+						</div>
+						<br />
+						<p id="fileName" align="left">未選擇檔案</p>
 					</div>
-					<div class="form-group" style="width: fit-content">
-						<label for="Hw_TestCase"><h4>
-								<i class="fa fa-minus" aria-hidden="true"></i>&nbsp;
-								<fmt:message key="teacherManageHW_label_hwTestCase" />
-							</h4></label> <br> <input id="edit_Hw_TestCase" type="file" accept=".zip"
-							name="Hw_TestCase" size="50" width="48" />
-					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal"
+							onclick="closeEditModal();">
+							<fmt:message key="teacherManageGroup_button_close" />
+						</button>
 					<button type="submit" class="btn btn-primary" name="edit_btn"
 						onclick="load(this); nicEditors.findEditor('edit_Hw_README').saveContent();">
 						<fmt:message key="teacherManageGroup_button_send" />
 					</button>
-				</form>
+				</div>
 			</div>
 		</div>
-	</div>
+		</div>
+	</form>
 
 	<!-- Delete Modal -->
 	<form id="deletetHw" style="margin-top: 10px;">
@@ -469,11 +392,10 @@
 							<fmt:message key="teacherManageHW_hw_delete_modal_title" />
 						</h4>
 						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+							aria-label="Close" onclick="closeDeleteModal();">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-
 					<div class="modal-body">
 						<div class="form-group">
 							<h5>
@@ -484,7 +406,8 @@
 					</div>
 
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">
+						<button type="button" class="btn btn-primary" data-dismiss="modal"
+							onclick="closeDeleteModal();">
 							<fmt:message key="teacherManageGroup_button_close" />
 						</button>
 						<button type="submit" class="btn btn-secondary"
@@ -492,7 +415,6 @@
 							<fmt:message key="teacherManageHW_hw_delete_modal_botton" />
 						</button>
 					</div>
-
 				</div>
 			</div>
 		</div>

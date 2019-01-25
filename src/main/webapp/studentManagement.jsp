@@ -15,7 +15,7 @@
 <%@ page import="fcu.selab.progedu.jenkins.JobStatus"%>
 <%@ page
 	import="org.json.JSONArray, org.json.JSONException, org.json.JSONObject"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
   if (session.getAttribute("username") == null || session.getAttribute("username").toString().equals("")) {
 				response.sendRedirect("index.jsp");
@@ -26,11 +26,14 @@
 <html>
 <head>
 <meta charset="BIG5">
-<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
+<meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
 <%@ include file="header.jsp"%>
+<style>
+
+
+</style>
 </head>
 <body>
-
 	<%
 	  Conn conn = Conn.getInstance();
 
@@ -51,66 +54,152 @@
 				// gitlab jenkins courseData
 				GitlabConfig gitData = GitlabConfig.getInstance();
 				JenkinsConfig jenkinsData = JenkinsConfig.getInstance();
-
 				JenkinsApi jenkins = JenkinsApi.getInstance();
 	%>
-
-	<div id="loadingBackground" style="display: none">
-		<div id="loader"></div>
-	</div>
 
 	<div id="main">
 		<div class="change_tab">
 			<ul class="tabs" style="margin-left: 0px; margin-bottom: 0px;">
-				<li><a href="#add_one_student">男丁格爾</a></li>
-				<li><a href="#add_mul_student">jQuery</a></li>
+				<li><a href="#add_one_student"><fmt:message
+							key="teacherManageStudent_h3_newAStudent" /></a></li>
+				<li><a href="#add_mul_student"><fmt:message
+							key="teacherManageStudent_h3_newAllStudent" /></a></li>
 			</ul>
 
 			<div class="tab_container">
 				<div id="add_one_student" class="tab_content">
-					<h2>關於作者</h2>
-					<p>目前工作是網頁開發為主，因此針對了 HTML, JavaScript, CSS
-						等知識特別深入研究。若有任何問題，歡迎直接留言或是透過 Mail 討論。</p>
+					<form id="newStudent">
+						<div class="add-student">
+							<label class="student-label" >Student's name:</label> <br /> <input
+								type="text" class="student-form  register" name="studentName">
+						</div>
+						<div class="add-student">
+							<label class="student-label">Student's Id:</label> <br /> <input
+								type="text" class="student-form  register" name="studentId">
+						</div>
+						<div class="add-student">
+							<label class="student-label">Student's email:</label> <br /> <input
+								type="text" class="student-form  register" name="studentEmail">
+						</div>
+						<div class="add-student">
+							<button id="submit-button" type="submit" class="btn btn-primary"
+								name="action" value="CONFIRM">Save</button>
+						</div>
+					</form>
 				</div>
 				<div id="add_mul_student" class="tab_content">
-					<h2>jQuery is a new kind of JavaScript Library.</h2>
-					<p>jQuery is a fast and concise JavaScript Library that
-						simplifies HTML document traversing, event handling, animating,
-						and Ajax interactions for rapid web development. jQuery is
-						designed to change the way that you write JavaScript</p>
+					<form id="addAllStudent">
+						<div class="add-student">
+							<label class="control-label"><strong><fmt:message
+										key="teacherManageStudent_h4_uploadStudent" /></label> <br /> <a
+								href="StudentTemplate.csv" class="btn"
+								style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc">
+								<fmt:message
+									key="teacherManageStudent_a_downloadEnrollmentTemplate" />
+							</a>
+						</div>
+
+						<div class="add-student">
+							<label class="student-label"><strong><fmt:message
+										key="teacherManageStudent_h4_uploadStudent" />:</strong></label> <br /> <input
+								type="file" name="file" class="span4">
+						</div>
+						<div class="add-student">
+							<input type="submit" class="btn btn-primary"
+							style="border: gray solid 1px" value="Upload" onclick="load();"
+							style="margin-top:10px;margin-bottom:10px;">
+						</div>
+						
+					</form>
 				</div>
+
 			</div>
 		</div>
-
+		
 		<div class="container-fluid"
-			style="padding-top: 0px; text-align: center;">
-			<!-- ---------------------------- Student Project ------------------------------- -->
-			<div class="card"
-				style="width: fit-content; margin: auto; text-align: center;">
-				<div class="card-block">
-					<table class="table table-striped"
-						style="margin-top: 20px; width: 100%">
-						<thead>
-							<tr>
-								<th
-									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-										key="dashboard_th_studentId" /></th>
-								<th
-									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-										key="dashboard_th_studentName" /></th>
-								<th
-									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-										key="dashboard_th_studentMail" /></th>
-							</tr>
-						</thead>
-						<tbody id="dashboard">
+		style="padding-top: 0px; text-align: center;">
+		<!-- ---------------------------- Student Project ------------------------------- -->
+		<div class="card"
+			style="width: fit-content; margin: auto; text-align: center;">
+			<div class="card-block">
+				<table class="table table-striped"
+					style="margin-top: 20px; width: 100%">
+					<thead>
+						<tr>
+							<th style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+									key="dashboard_th_studentId" /></th>
+							<th style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+									key="dashboard_th_studentName" /></th>
+							<th style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
+									key="dashboard_th_studentMail" /></th>
+						</tr>
+					</thead>
+					<tbody id="dashboard">
 
-						</tbody>
-					</table>
-				</div>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
+	</div>
+
+	<!-- upload the addStudent -->
+	<script>
+	$(document).ready(function() {
+		$("#addAllStudent").submit(function(evt) {
+			evt.preventDefault();
+			var formData = new FormData($(this)[0]);
+			$.ajax({
+				url : 'webapi/user/upload',
+				type : 'POST',
+				data : formData,
+				async : true,
+				cache : false,
+				contentType : false,
+				enctype : 'multipart/form-data',
+				processData : false,
+				success : function(response) {
+					alert("uploaded!");
+					top.location.href = "studentManagement.jsp";
+				},
+				error : function(a, b, c) {
+					console.log(a.status, b, c)
+					alert("failed!");
+					location.reload();
+				}
+			});
+			return false;
+		});
+	});
+
+	$(document).ready(function() {
+		$("#newStudent").submit(function(evt) {
+			evt.preventDefault();
+			var formData = new FormData($(this)[0]);
+			$.ajax({
+				url : 'webapi/user/new',
+				type : 'POST',
+				data : formData,
+				async : true,
+				cache : false,
+				contentType : false,
+				enctype : 'multipart/form-data',
+				processData : false,
+				success : function(response) {
+					alert("uploaded!");
+					top.location.href = "studentManagement.jsp";
+				},
+				error : function(a, b, c) {
+					console.log(a.status, b, c)
+					alert("failed!");
+					// location.reload();
+				}
+			});
+			return false;
+		});
+	});
+	</script>
+	<!-- Show The Student -->
 	<script>
 		$(function() {
 			var _showTab = 0;
@@ -177,8 +266,9 @@
 				content += '</tr>';
 				$('#dashboard').append(content)
 			}
-			document.getElementById('loadingBackground').style.display = 'none';
 		}
 	</script>
+	
+	
 </body>
 </html>

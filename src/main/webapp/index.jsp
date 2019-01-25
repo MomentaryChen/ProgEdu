@@ -24,10 +24,11 @@
     <link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
     <script type="text/javascript">
 	  var Msg ='<%=session.getAttribute("enterError")%>';
-	  if (Msg != "null") {
-	    function alertName() {
+	  if (Msg != null) {
+	    function alertError() {
 	      alert("Your username or password is incorrect!");
 	    }
+	    alertError();
 	  }
 	</script>
 </head>

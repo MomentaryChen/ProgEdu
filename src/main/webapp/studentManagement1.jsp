@@ -33,8 +33,7 @@
 	<div id='main'>
 		<section id="my-account-security-form" class="page container">
 		<div class="quarter-div">
-			<form id="userSecurityForm" class="form-horizontal"
-				action="dashboard.html" method="post">
+			<form id="newStudent" class="form-horizontal">
 				<div class="container">
 					<div class="row">
 						<div id="acct-password-row" class="span9">
@@ -73,8 +72,7 @@
 			</form>
 		</div>
 		<div class="quarter-div">
-			<form id="userSecurityForm" class="form-horizontal"
-				action="dashboard.html" method="post">
+			<form id="id="addAllStudent"" class="form-horizontal">
 				<div class="container">
 					<div class="row">
 						<div id="acct-password-row1" class="span9">

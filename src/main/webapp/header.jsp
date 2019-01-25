@@ -7,8 +7,8 @@
 	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 	<script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
 	<link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
-	<link href="./css/progedu.css" type="text/css" media="screen, projection" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> 
+	<link href="./css/progedu.css" type="text/css" media="screen, projection" rel="stylesheet" />
 </head>
 
 <body>
