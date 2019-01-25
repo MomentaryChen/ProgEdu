@@ -71,15 +71,15 @@
 					<form id="newStudent">
 						<div class="add-student">
 							<label class="student-label" >Student's name:</label> <br /> <input
-								type="text" class="student-form  register" name="studentName">
+								type="text" class="student-form  register" placeholder="eg. Victor" name="studentName" required>
 						</div>
 						<div class="add-student">
 							<label class="student-label">Student's Id:</label> <br /> <input
-								type="text" class="student-form  register" name="studentId">
+								type="text" class="student-form  register" placeholder="eg. D0000000" name="studentId" required>
 						</div>
 						<div class="add-student">
 							<label class="student-label">Student's email:</label> <br /> <input
-								type="text" class="student-form  register" name="studentEmail">
+								type="text" class="student-form  register" placeholder="eg. XXX@google.com" name="studentEmail" required>
 						</div>
 						<div class="add-student">
 							<button id="submit-button" type="submit" class="btn btn-primary"
@@ -106,8 +106,7 @@
 						</div>
 						<div class="add-student">
 							<input type="submit" class="btn btn-primary"
-							style="border: gray solid 1px" value="Upload" onclick="load();"
-							style="margin-top:10px;margin-bottom:10px;">
+							style="border: gray solid 1px;margin-top:10px;margin-bottom:10px;" value="Upload" onclick="load();" required>
 						</div>
 						
 					</form>
