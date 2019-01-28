@@ -117,10 +117,10 @@ public class ProjectService {
       @FormDataParam("file") InputStream uploadedInputStream,
       @FormDataParam("file") FormDataContentDisposition fileDetail) {
 
-    String rootProjectUrl 	= null;
-    String folderName 		= null;
-    String filePath 		= null;
-    boolean hasTemplate 	= false;
+    String rootProjectUrl = null;
+    String folderName = null;
+    String filePath = null;
+    boolean hasTemplate = false;
 
     // 1. Create root project and get project id and url
     createRootProject(name);

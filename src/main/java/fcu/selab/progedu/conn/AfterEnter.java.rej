@@ -1,4 +1,4 @@
-diff a/src/main/java/fcu/selab/progedu/conn/AfterEnter.java b/src/main/java/fcu/selab/progedu/conn/AfterEnter.java	(rejected hunks)
+diff a/src/main/java/fcu/selab/progedu/conn/AfterEnter.java b/src/main/java/fcu/selab/progedu/conn/AfterEnter.java (rejected hunks)
 @@ -87,8 +87,10 @@
    /**
     * After check, send redirect

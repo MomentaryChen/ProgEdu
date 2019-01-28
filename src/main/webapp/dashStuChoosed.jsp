@@ -11,124 +11,101 @@
 <%@ page import="org.gitlab.api.models.*" %>
 <%@ page import="java.util.*, fcu.selab.progedu.conn.Dash" %>
 <%@ page import="fcu.selab.progedu.jenkins.JobStatus" %>
-
+<%@ page import="org.json.JSONArray, org.json.JSONException, org.json.JSONObject" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="fcu.selab.progedu.conn.*" %>
+<%@ page import="fcu.selab.progedu.status.*" %>
+/*
 <%
 	if(session.getAttribute("username") == null || session.getAttribute("username").toString().equals("")){
 		response.sendRedirect("index.jsp");
 	}
 	session.putValue("page", "dashStuChoosed");
 %>
+ 
+
 <%
+
 	String studentId = request.getParameter("studentId");
 	if(null == studentId){
-	  response.sendRedirect("index.jsp");
+	  response.sendRedirect("empty.jsp");
 	}
+
 %>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
 <head>
+	<title>ProgEdu2</title>
+	<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+	<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" >
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<%@ include file="header.jsp" %>
+	
 	<style type="text/css">
-		html, body{
-			height: 100%;
-			overflow-x: hidden;
+		
+		.information {
+		  border-radius: 8px;
+		  background-color: #dfdfdf;
+		  border-style:ridge;
+		  width: 1000px;
+          height: 610px;
+		  
 		}
-		#allProject {
-		 margin: 10px 0px 0px 0px;
+		.information_under {
+		  border-radius: 8px;
+		  background-color: #dfdfdf;
+		  
 		}
-		#inline p {
-		    display: inline;
+		
+		.bar {  
+		  border-radius: 8px;
+		  padding-left:65px;
+		  padding-top:7px;
+		  background-color: #1f3a4d;
+		  width:auto;
+          height: 40px;
+		  
 		}
-		#inline{
-			margin: 20px;
+		.information_top {
+		  background-color: #ffffff;
+          height: 200px;
+		  
 		}
-		#main {
-			height: 100%;
-			margin-left: 200px;
-			overflow-x: scroll;
-			padding-top: 20px;
-			width: auto;
+		.hwInfor {
+		  float:left;
+		  background-color: #dddfff;
+		  width: 250px;
+          overflow-y:scroll;
+		  
 		}
-		.sidebar {
-			height: 100%;
-			background-color: #444;
-			color: white; 
-			margin: -1px;
-			position: fixed; /* Set the navbar to fixed position */
-   			top: 0;
-   			padding-top: 50px;
-   		 	overflow-y: scroll;
-   		 	z-index: 100;
+        .basicInfor {
+          float:right;
+          padding:20px;
+		  background-color: #ffffff;
+		  width: 750px;
+		  
 		}
-		.sidebar a{
-			color: white;
+		.FBInfor {
+		  display:flex;
+		  background-color: #fffddd;
+         
+		  
 		}
-		.sidebar a:hover{
-			color: orange;
+		.top_height{
+		   height: 200px;
 		}
-		.sidebar button{
-			color: white;
-			background: none;
+		.under_height{
+		   height: 366px;
 		}
-		.ovol {
-			border-radius: 5px;
-			height: 50px;
-            font-weight: bold;
-            width: 120px;
-            color: white;
-            text-align: center;
+		
+		.font_size{
+		  font-size:28px;
 		}
-		.circle {
-			border-radius: 30px;
-			height: 30px;
-			font-weight: bold;
-			width: 30px;
-			color: white;
-			text-align: center;
-		}
-		.red {
-			background: #e52424;
-		}
-		.blue {
-			background: #5fa7e8;
-		}
-		.gray {
-			background: #878787;
-		}
-		.orange {
-			background: gold;
-		}
-		.green {
-			background: #32CD32;
-		}
-		.gold{
-			background: #FFD700;
-		}
-		.circle a {
-			color: #fff;
-			line-height: 30px;
-		}
-        .CPF {
-            background: #e52424;
-        }
-        .S {
-            background: #5fa7e8;
-        }
-        .NB {
-            background: #878787;
-        }
-        .CSF {
-            background: gold;
-        }
-        .CTF {
-            background: #32CD32;
-        }
+		
 		
 	</style>
 	
-	<link rel="shortcut icon" href="img/favicon.ico"/>
-	<link rel="bookmark" href="img/favicon.ico"/>
-	<title>ProgEdu</title>
+	
 </head>
 <body>
 	
@@ -160,143 +137,122 @@
      		}
      	}
 	%>
-	<%@ include file="header.jsp" %>
-			<!-- -----sidebar----- -->
-			<div class="sidebar" style="width:200px">
-				<ul class="nav flex-column">
-         			  <li class="nav-item">
-           				<font size="4"><a style="color: white;" href="javascript:;" data-toggle="collapse" data-target="#projects" class="nav-link"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; <%=choosedUser.getUserName() %> <i class="fa fa-chevron-down" aria-hidden="true"></i></a></font>
-           				<ul id="projects" class="collapse" style="list-style: none;">
-        			            <%
-        			        		List<GitlabProject> projects = conn.getProject(choosedUser);
-        			        		Collections.reverse(projects);
-					            	for(GitlabProject project : projects){
-					            	  for(Project dbProject : dbProjects){
-					            	    if(project.getName().equals(dbProject.getName())){
-					            	      String href = "dashProjectChoosed.jsp?userId=" + choosedUser.getGitLabId() + "&proName=" + project.getName();
-					            	      %>
-					            	      	<li class="nav-item"><font size="3"><a style="color: white;" class="nav-link" href=<%=href %>><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp; <%=project.getName() %></a></font></li>
-					            	      <%
-					            	    }
-					            	  }
-					            	}
-					            %>
-    			        </ul>
-        			   </li>
-        			   <li class="nav-item">
-        			       <font size="4"><a style="color: white;" href="javascript:;" data-toggle="collapse" data-target="#student" class="nav-link"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; <fmt:message key="dashboard_a_student"/> <i class="fa fa-chevron-down" aria-hidden="true"></i></a></font>
-       			        <ul id="student" class="collapse show" style="list-style: none;">
-       			            <%
-	  				          	for(User user : users){
-	        			            String style = "";
-		  			          	    String userName = user.getUserName();
-		  			          	    String name = user.getName();
-		            	 			String href = "\"dashStuChoosed.jsp?studentId=" + user.getGitLabId() + "\"";
-		            	 			if(choosedUser.getUserName().equals(user.getUserName())) {
-		            	 				style = "color: burlywood;";
-		            	 			}
-	            	 		 %>
-	            	  				<li class="nav-item"><font size="3">
-	            	  					<a style="<%=style%>" class="nav-link active" href=<%=href %>>
-	            	  						<i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp; <%=userName %>&nbsp; <%=name %>
-	            	  					</a>
-	            	  				</font></li>
-	            	  			<%
-	            				}
-	            			%>
-               			</ul>
-           			</li>
-         			</ul>
-			</div>
-			<!-- -----sidebar----- -->
-       	<%
+	
+	<div class="container-fluid" id="main">
+	  <h1 >學生資料</h1>
+	  <%@ include file="projectLight.jsp"%>
+	  <div class="card" style="width: fit-content;margin: auto;text-align:center;">
+	    <div class="information">
+	      <div class="information_top" >
+	        <div class="icon-user top_height" style="width:150px;font-size: 10em; display:inline" ></div>
+	        <div class="basicInfor top_height" style="text-align:left">
+	        <p class="font_size">ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <%=choosedUser.getUserName().toUpperCase() %></p>
+	        <p class="font_size">Student: <%=choosedUser.getName() %></p>
+	        <p class="font_size">Email&nbsp;&nbsp;&nbsp;&nbsp;: <%=choosedUser.getEmail() %></p>
+	        
+	        </div> 
+	        
+
+	      
+	      </div>
+	      <div class="bar font_size" style="color:#ffffff;text-align:left;" >
+	         <h3 style="float:left;margin:0px ">學生作業</h3> 
+	      
+	      </div>
+	      
+	      
+	      
+	      <div class="information_under">
+	          <%
        		String private_token = choosedUser.getPrivateToken();
            	StudentConn sConn = new StudentConn(private_token); 	
            	List<GitlabProject> gitProjects = sConn.getProject();
            	int pro_total_commits = 0;
        		
-       	%>
-       	<div class="container-fluid" id="main">
-       		<h2><%=choosedUser.getUserName() %></h2>
-       		 <div class="card" style="width: fit-content">
-        		 	<div class="card-header">
-	        			<h4 id="Statistics Chart"><i class="fa fa-table" aria-hidden="true"></i>&nbsp; 作業</h4>
-	        		</div>
-	        		<div class="card-block">
-						<%@ include file="projectLight.jsp" %>
-        		 	<table class="table table-striped">
-		        		<thead>
-							<tr>
-								<th>作業</th>
-								<%
-									for(Project dbProject : dbProjects){
-									  %>
-									  	<th style="font-weight: 900; font-size: 18px"><%=dbProject.getName() %></th>
-									  <%
-									}
-								%>
-							</tr>
-						</thead>
-						<tbody>
-							<tr id="allProject" style="width: 100%">
-								<th>Commits</th>
-								<%
-									for(Project dbProject : dbProjects){
-									  
-									  int commit_count = 0;
-									  String projectJenkinsUrl = "";
-									  
-									  for(GitlabProject gitProject : gitProjects){
-									    if(dbProject.getName().equals(gitProject.getName())){
-										  projectJenkinsUrl = "dashProjectChoosed.jsp?userId=" + choosedUser.getGitLabId() + "&proName=" + gitProject.getName();
-									      Dash dash = new Dash(choosedUser);
-									      commit_count = dash.getProjectCommitCount(gitProject);
-									      %>
-									      <script type="text/javascript">
-											var userName = <%="'" + choosedUser.getUserName() + "'"%>
-											var proName = <%="'" + gitProject.getName() + "'"%>
-											$.ajax({
-												url : 'webapi/commits/result',
-												type : 'GET',
-												data: {
-													"proName" : proName,
-													"userName" : userName
-												}, 
-												async : true,
-												cache : true,
-												contentType: 'application/json; charset=UTF-8',
-												success : function(responseText) {
-													var result = responseText.split(",");
-													if(result.length >= 3) {
-														var d = document.getElementById(result[0]);
-														d.className = result[1];
-														var a = document.getElementById(result[0] + "_commit");
-														a.textContent = result[2];
-													}
-												}, 
-												error : function(responseText) {
-													console.log("False!");
-												}
-											});
-										</script>
-										<%
-									    }else{
-											continue;
-										}
-									    %>
-									    	<td><p class="" id=<%= choosedUser.getUserName() + "_" + dbProject.getName()%>>
-									    		<a href="#" onclick="window.open('<%=projectJenkinsUrl%>')" id=<%= choosedUser.getUserName() + "_" + dbProject.getName() + "_commit"%>><%=commit_count %></a>
-									    	</p></td>
-									    <%
-									  }
-									}
-								%>
+          	%>
+          	       <script>
+	      				function updateConsoleText(target){
+	      					var name= target.name;
+	      					$('#consoleText').text(name);
+	      				}
+	      			</script>
+			        <div class="hwInfor under_height">
+			          <table class="table table-striped" style=" width: 100%">
+							<tbody>
 								
-							</tr>
+									<%
+										for(Project dbProject : dbProjects){
+										  
+										  int commit_count = 0;
+										  String projectJenkinsUrl = "";
+										  
+										  for(GitlabProject gitProject : gitProjects){
+										    if(dbProject.getName().equals(gitProject.getName())){
+											  projectJenkinsUrl = "dashProjectChoosed.jsp?userId=" + choosedUser.getGitLabId() + "&proName=" + gitProject.getName();
+										      Dash dash = new Dash(choosedUser);
+										      commit_count = dash.getProjectCommitCount(gitProject);
+										      %>
+										      <script type="text/javascript">
+												var userName = <%="'" + choosedUser.getUserName() + "'"%>
+												var proName = <%="'" + gitProject.getName() + "'"%>
+												$.ajax({
+													url : 'webapi/commits/result',
+													type : 'GET',
+													data: {
+														"proName" : proName,
+														"userName" : userName
+													}, 
+													async : true,
+													cache : true,
+													contentType: 'application/json; charset=UTF-8',
+													success : function(responseText) {
+														var result = responseText.split(",");
+														if(result.length >= 3) {
+															var d = document.getElementById(result[0]);
+															d.className = result[1];
+															var a = document.getElementById(result[0] + "_commit");
+															a.textContent = result[2];
+														}
+													}, 
+													error : function(responseText) {
+														console.log("False!");
+													}
+												});
+											</script>
+											<%
+										    }else{
+												continue;
+											}
+										    %>
+										      <tr>
+										     	<td style="font-weight: 900; text-align: center; font-size: 18px;width: 60%;"><%=dbProject.getName()%></td> 
+										    	<td style="font-weight: 900; text-align: center; font-size: 18px;width: 40%;"><p class="" id=<%= choosedUser.getUserName() + "_" + dbProject.getName()%>>
+										    		<a name ="<%=projectJenkinsUrl%>" href="#" onclick=" updateConsoleText(this);"  id=<%= choosedUser.getUserName() + "_" + dbProject.getName() + "_commit"%>><%=commit_count %></a>
+										    	</p></td>
+										      </tr>	
+										    <%
+										  }
+										}
+									%>
+
 						</tbody>
-					</table>
-	        	</div>
-       		 </div>				
-       	</div>
+						</table>
+			        </div>
+	      			
+	                     
+			        <div class="FBInfor under_height">
+		            <p id="consoleText"></p>
+			          
+			        </div>
+	        
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
 </body>
+
 </html>

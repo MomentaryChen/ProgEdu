@@ -13,9 +13,9 @@ public class UnitTestFailure implements Status {
     char errors = consoleTest.charAt(consoleTest.length() - 13);
     char failures = consoleTest.charAt(consoleTest.length() - 24);
 
-    if (errors == '0' && failures == '0')
+    if (errors == '0' && failures == '0') {
       return consoleTest;
-
+    }
     return "";
   }
 
