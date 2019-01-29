@@ -69,7 +69,7 @@ public class JenkinsService {
       String jenkinsHostUrl = jenkinsData.getJenkinsHostUrl();
       String jenkinsUrl = jenkinsHostUrl + JOB + userName + "_" + proName + "/" + buildNum
           + "/console";
-      status.getConsole(jenkins.getConsoleText(jenkinsUrl));
+      consoleText = jenkins.getConsoleText(jenkinsUrl);
     } catch (LoadConfigFailureException e) {
       e.getStackTrace();
     }

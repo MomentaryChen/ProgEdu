@@ -146,7 +146,7 @@
 					function postConsoleText(type, proName, userName, buildNum) {
 						$
 								.ajax({
-									url : 'webapi/commits/cosoleText',
+									url : 'webapi/jenkins/consoleText',
 									type : 'GET',
 									data : {
 										"type" : type,
@@ -158,15 +158,9 @@
 									async : true,
 									cache : true,
 									contentType : 'application/json; charset=UTF-8',
-									success : function() {
-										var updatefbInfor = "http://140.134.26.77:8082/job/"
-												+ username
-												+ "_"
-												+ proName
-												+ "/" + buildNum + "/console";
-										updateConsoleText(this);
-										//$().html(updatefbInfor);
-										console.log(updatefbInfor);
+									success : function(responseText) {
+										var result = responseText;
+										$('.fbInfor').html(result);
 									},
 									error : function(responseText) {
 										console.log("False!");
@@ -193,7 +187,7 @@
 								<td
 									style="font-weight: 900; text-align: center; font-size: 18px; width: 30%;">
 									<a id="<%=gitProject.getName()%>_result"
-									onclick="updateConsoleText(this);"></a>
+									onclick='postConsoleText("S","OOP-HW1","d0440792","1");'></a>
 								</td>
 							</tr>
 
