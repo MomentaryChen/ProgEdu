@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ page
 	import="fcu.selab.progedu.conn.Conn,fcu.selab.progedu.conn.HttpConnect, fcu.selab.progedu.conn.StudentConn"%>
+<%@ page import="fcu.selab.progedu.conn.StudentDashChoosePro"%>	
 <%@ page
 	import="fcu.selab.progedu.jenkins.JenkinsApi, fcu.selab.progedu.conn.Language"%>
 <%@ page import="fcu.selab.progedu.config.CourseConfig"%>
@@ -15,13 +16,8 @@
 <%@ page import="org.gitlab.api.models.*"%>
 <%@ page import="java.util.*, fcu.selab.progedu.conn.Dash"%>
 <%@ page import="fcu.selab.progedu.jenkins.JobStatus"%>
-<<<<<<< HEAD
-=======
-<%@ page
-	import="org.json.JSONArray, org.json.JSONException, org.json.JSONObject"%>
-<%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="fcu.selab.progedu.conn.*"%>
->>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
+
+
 <%@ page import="fcu.selab.progedu.status.*"%>
 /*
 <%
@@ -40,10 +36,8 @@
 %>
 
 <head>
-<<<<<<< HEAD
 <title>ProgEdu2</title>
-=======
->>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
+
 <script src="http://js.nicedit.com/nicEdit-latest.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
@@ -57,34 +51,35 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 <%@ include file="header.jsp"%>
-<<<<<<< HEAD
+
 
 <style type="text/css">
 .information {
-	border-radius: 8px;
+	
 	background-color: #ffffff;
-	border-style: ridge;
-	width: 1000px;
+	text-align:center;
 	height: 610px;
+    margin: 0px 10%;
 }
 
 .information_under {
 	border-radius: 8px;
 	background-color: #dfdfdf;
+	height:70%;
+	
 }
 
 .bar {
 	border-radius: 8px;
-	padding-left: 65px;
-	padding-top: 7px;
 	background-color: #1f3a4d;
 	width: auto;
 	height: 40px;
 }
 
 .information_top {
-	background-color: #ffffff;
-	height: 200px;
+	border-radius: 8px;
+	border-style: ridge;
+	margin-bottom:2px;
 }
 
 .hwInfor {
@@ -92,13 +87,15 @@
 	background-color: #dddfff;
 	width: 25%;
 	overflow-y: scroll;
+	border-radius: 8px;
+    border-style: ridge;
+ 
 }
 
 .basicInfor {
 	float: right;
 	padding: 20px;
-	background-color: #ffffff;
-	width: 750px;
+	width: 75%;
 }
 
 .FBInfor {
@@ -106,6 +103,8 @@
 	float: left;
 	border-radius: 8px;
 	background-color: #fffddd;
+	border-radius: 8px;
+    border-style: outset;
 }
 
 .top_height {
@@ -113,7 +112,7 @@
 }
 
 .under_height {
-	height: 366px;
+	height: 100%;
 }
 
 .font_size {
@@ -125,13 +124,9 @@
 </head>
 <body>
 
-=======
-</head>
-<body>
->>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 	<%
 	  Conn conn = Conn.getInstance();
-
+				StudentDashChoosePro studentDash = new StudentDashChoosePro();
 				UserDbManager db = UserDbManager.getInstance();
 				ProjectDbManager Pdb = ProjectDbManager.getInstance();
 
@@ -161,8 +156,6 @@
 	<div class="container-fluid" id="main">
 		<h1>學生資料</h1>
 		<%@ include file="projectLight.jsp"%>
-		<div class="card"
-			style="width: fit-content; margin: auto; text-align: center;">
 			<div class="information">
 				<div class="information_top">
 					<div class="icon-user top_height"
@@ -179,10 +172,11 @@
 							<%=choosedUser.getEmail()%></p>
 
 					</div>
->>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
+
 				</div>
-				<div class="bar font_size" style="color: #ffffff; text-align: left;">
-					<h3 style="float: left; margin: 0px">學生作業</h3>
+				<div class="bar font_size" style="color: #ffffff; t">
+					<p style="width:25%">學生作業</p>
+					
 
 				</div>
 
@@ -190,7 +184,6 @@
 
 				<div class="information_under">
 
->>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 					<%
 					  String private_token = choosedUser.getPrivateToken();
 								StudentConn sConn = new StudentConn(private_token);
@@ -198,11 +191,6 @@
 								int pro_total_commits = 0;
 					%>
 					<script>
-						function updateConsoleText(target) {
-							var name = target.name;
-							$('#consoleText').text(name);
-						}
-
 						function postCommitResult(userName,proName){
 							
 									$
@@ -222,7 +210,7 @@
 													if (result.length >= 3) {
 														
 														var a = document.getElementById(proName + "_result");
-														$(a).html( result[2]);
+														$(a).html(result[2] );
 													}
 													console.log(result);
 												},
@@ -231,6 +219,35 @@
 												}
 											});
 						}
+						function getConsoleText(type,proName,userName,buildNum) {
+							
+							$.ajax({
+								url : 'webapi/commits/cosoleText',
+								type : 'GET',
+								data: {
+									"type"     :type,
+									"proName" : proName,
+									"userName" :userName,
+									"buildNum" :buildNum
+									
+								}, 
+								async : true,
+								cache : true,
+								contentType: 'application/json; charset=UTF-8',
+								success : function(updateConsoleText(this)) {
+									var updatefbInfor = "http://140.134.26.77:8082/job/"+name +"_"+proName +"/"+buildNum +"/console";
+									//$().html(updatefbInfor);
+									console.log(updatefbInfor);
+								}
+									
+								}, 
+								error : function(responseText) {
+									console.log("False!");
+								}
+							
+						}
+
+		
 					</script>
 					<div class="hwInfor under_height">
 						<table class="table table-striped" style="width: 100%">
@@ -243,36 +260,43 @@
 									<%="'" + choosedUser.getUserName() + "'"%>
 										var proName =
 									<%="'" + gitProject.getName() + "'"%>
-									postCommitResult(userName,proName)
+									postCommitResult(userName,proName);
 								</script>
 								<tr>
 									<td
-										id = "<%=gitProject.getName()%>" style="font-weight: 900; text-align: center; font-size: 18px; width: 60%;"><%=gitProject.getName()%></td>
+										id = "<%=gitProject.getName()%>" style="font-weight: 900; text-align: center; font-size: 18px; width: 70%;"><%=gitProject.getName()%></td>
 									<td
-									 id ="<%=gitProject.getName()%>_result" style="font-weight: 900; text-align: center; font-size: 18px; width: 40%;"></td>
+									  style="font-weight: 900; text-align: center; font-size: 18px; width: 30%;">
+									 <a id ="<%=gitProject.getName()%>_result" onclick= updateConsoleText(this) ></a>
+									 </td>
 								</tr>
 								
 							<% } %>
-
 							</tbody>
 						</table>
 					</div>
-
-
-					<pre class="FBInfor under_height">
+					
+						<pre class="FBInfor under_height">
 						<%
 							Status status = StatusFactory.getStatus("S");
-							String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/D4444444_OOP-HW13/1/console");
-							String consoleText = status.getConsole(detailConsoleText);
+						    String name =choosedUser.getUserName();
+						    
+						    
+						    String buildNum = studentDash.getLastBuildNum(name, "OOP-HW1");
+							/*String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/"+name+"_"+proname + builnum +"console");
+							String consoleText = status.getConsole(detailConsoleText);*/
+							
 						%>
-						<%= consoleText %>
+						<script>console.log(<%=buildNum%>)</script>
+						
 						
 					</pre>
 
+				
 				</div>
 
 			</div>
-		</div>
+		
 	</div>
 
 
