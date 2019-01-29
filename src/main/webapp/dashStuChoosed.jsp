@@ -219,7 +219,7 @@
 												}
 											});
 						}
-						function getConsoleText(type,proName,userName,buildNum) {
+						function postConsoleText(type,proName,userName,buildNum) {
 							
 							$.ajax({
 								url : 'webapi/commits/cosoleText',
@@ -235,7 +235,7 @@
 								cache : true,
 								contentType: 'application/json; charset=UTF-8',
 								success : function(updateConsoleText(this)) {
-									var updatefbInfor = "http://140.134.26.77:8082/job/"+name +"_"+proName +"/"+buildNum +"/console";
+									var updatefbInfor = "http://140.134.26.77:8082/job/"+username +"_"+proName +"/"+buildNum +"/console";
 									//$().html(updatefbInfor);
 									console.log(updatefbInfor);
 								}
