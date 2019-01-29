@@ -53,74 +53,6 @@
 <%@ include file="header.jsp"%>
 
 
-<style type="text/css">
-.information {
-	
-	background-color: #ffffff;
-	text-align:center;
-	height: 610px;
-    margin: 0px 10%;
-}
-
-.information_under {
-	border-radius: 8px;
-	background-color: #dfdfdf;
-	height:70%;
-	
-}
-
-.bar {
-	border-radius: 8px;
-	background-color: #1f3a4d;
-	width: auto;
-	height: 40px;
-}
-
-.information_top {
-	border-radius: 8px;
-	border-style: ridge;
-	margin-bottom:2px;
-}
-
-.hwInfor {
-	float: left;
-	background-color: #dddfff;
-	width: 25%;
-	overflow-y: scroll;
-	border-radius: 8px;
-    border-style: ridge;
- 
-}
-
-.basicInfor {
-	float: right;
-	padding: 20px;
-	width: 75%;
-}
-
-.FBInfor {
-	width: 75%;
-	float: left;
-	border-radius: 8px;
-	background-color: #fffddd;
-	border-radius: 8px;
-    border-style: outset;
-}
-
-.top_height {
-	height: 200px;
-}
-
-.under_height {
-	height: 100%;
-}
-
-.font_size {
-	font-size: 28px;
-}
-</style>
-
-
 </head>
 <body>
 
@@ -264,7 +196,7 @@
 								</script>
 								<tr>
 									<td
-										id = "<%=gitProject.getName()%>" style="font-weight: 900; text-align: center; font-size: 18px; width: 70%;"><%=gitProject.getName()%></td>
+										id = "<%=gitProject.getName()%>" style="font-weight: 900;  font-size: 18px; width: 70%;"><%=gitProject.getName()%></td>
 									<td
 									  style="font-weight: 900; text-align: center; font-size: 18px; width: 30%;">
 									 <a id ="<%=gitProject.getName()%>_result" onclick= updateConsoleText(this) ></a>
