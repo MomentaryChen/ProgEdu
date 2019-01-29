@@ -177,7 +177,7 @@ input[type="text"], input[type="datetime-local"] {
 }
 .information {
 	border-radius: 8px;
-	background-color: #dfdfdf;
+	background-color: #ffffff;
 	border-style: ridge;
 	width: 1000px;
 	height: 610px;
@@ -205,7 +205,7 @@ input[type="text"], input[type="datetime-local"] {
 .hwInfor {
 	float: left;
 	background-color: #dddfff;
-	width: 250px;
+	width: 25%;
 	overflow-y: scroll;
 }
 
@@ -217,8 +217,10 @@ input[type="text"], input[type="datetime-local"] {
 }
 
 .FBInfor {
-	display: flex;
 	background-color: #fffddd;
+	width: 75%;
+	float:left;
+	border-radius:8px;
 }
 
 .top_height {

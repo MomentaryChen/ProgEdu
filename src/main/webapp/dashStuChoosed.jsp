@@ -52,7 +52,6 @@
 <%@ include file="header.jsp"%>
 </head>
 <body>
-
 	<%
 	  Conn conn = Conn.getInstance();
 
@@ -101,7 +100,6 @@
 						<p class="font_size">
 							Email&nbsp;&nbsp;&nbsp;&nbsp;:
 							<%=choosedUser.getEmail()%></p>
-
 					</div>
 				</div>
 				<div class="bar font_size" style="color: #ffffff; text-align: left;">
@@ -177,11 +175,15 @@
 						</table>
 					</div>
 
-					<div class="FBInfor under_height">
-
-						<p id="consoleText"></p>
-
-					</div>
+					<pre class="FBInfor under_height">
+						<%
+							Status status = StatusFactory.getStatus("S");
+							String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/D4444444_OOP-HW13/1/console");
+							String consoleText = status.getConsole(detailConsoleText);
+						%>
+						<%= consoleText %>
+						
+					</pre>
 
 				</div>
 
