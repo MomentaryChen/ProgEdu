@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ page
 	import="fcu.selab.progedu.conn.Conn,fcu.selab.progedu.conn.HttpConnect, fcu.selab.progedu.conn.StudentConn"%>
+<%@ page import="fcu.selab.progedu.conn.StudentDashChoosePro"%>
 <%@ page
 	import="fcu.selab.progedu.jenkins.JenkinsApi, fcu.selab.progedu.conn.Language"%>
 <%@ page import="fcu.selab.progedu.config.CourseConfig"%>
@@ -15,10 +16,8 @@
 <%@ page import="org.gitlab.api.models.*"%>
 <%@ page import="java.util.*, fcu.selab.progedu.conn.Dash"%>
 <%@ page import="fcu.selab.progedu.jenkins.JobStatus"%>
-<%@ page
-	import="org.json.JSONArray, org.json.JSONException, org.json.JSONObject"%>
-<%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="fcu.selab.progedu.conn.*"%>
+
+
 <%@ page import="fcu.selab.progedu.status.*"%>
 /*
 <%
@@ -37,6 +36,8 @@
 %>
 
 <head>
+<title>ProgEdu2</title>
+
 <script src="http://js.nicedit.com/nicEdit-latest.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
@@ -50,11 +51,13 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 <%@ include file="header.jsp"%>
+
 </head>
 <body>
+
 	<%
 	  Conn conn = Conn.getInstance();
-
+				StudentDashChoosePro studentDash = new StudentDashChoosePro();
 				UserDbManager db = UserDbManager.getInstance();
 				ProjectDbManager Pdb = ProjectDbManager.getInstance();
 
@@ -84,45 +87,37 @@
 	<div class="container-fluid" id="main">
 		<h1>學生資料</h1>
 		<%@ include file="projectLight.jsp"%>
-		<div class="card"
-			style="width: fit-content; margin: auto; text-align: center;">
-			<div class="information">
-				<div class="information_top">
-					<div class="icon-user top_height"
-						style="width: 150px; font-size: 10em; display: inline"></div>
-					<div class="basicInfor top_height" style="text-align: left">
-						<p class="font_size">
-							ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-							<%=choosedUser.getUserName().toUpperCase()%></p>
-						<p class="font_size">
-							Student:
-							<%=choosedUser.getName()%></p>
-						<p class="font_size">
-							Email&nbsp;&nbsp;&nbsp;&nbsp;:
-							<%=choosedUser.getEmail()%></p>
-					</div>
-				</div>
-				<div class="bar font_size" style="color: #ffffff; text-align: left;">
-					<h3 style="float: left; margin: 0px">學生作業</h3>
+		<div class="information">
+			<div class="information_top">
+				<div class="icon-user top_height"
+					style="width: 150px; font-size: 10em; display: inline"></div>
+				<div class="basicInfor top_height" style="text-align: left">
+					<p class="font_size">
+						ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+						<%=choosedUser.getUserName().toUpperCase()%></p>
+					<p class="font_size">
+						Student:
+						<%=choosedUser.getName()%></p>
+					<p class="font_size">
+						Email&nbsp;&nbsp;&nbsp;&nbsp;:
+						<%=choosedUser.getEmail()%></p>
 
 				</div>
 
+			</div>
+			<div class="bar font_size" style="color: #ffffff;">
+				<p style="width: 25%">學生作業</p>
+			</div>
+			<div class="information_under">
 
-
-				<div class="information_under">
-					<%
-					  String private_token = choosedUser.getPrivateToken();
-								StudentConn sConn = new StudentConn(private_token);
-								List<GitlabProject> gitProjects = sConn.getProject();
-								int pro_total_commits = 0;
-					%>
-					<script>
-						function updateConsoleText(target) {
-							var name = target.name;
-							$('#consoleText').text(name);
-						}
+				<%
+				  String private_token = choosedUser.getPrivateToken();
+							StudentConn sConn = new StudentConn(private_token);
+							List<GitlabProject> gitProjects = sConn.getProject();
+							int pro_total_commits = 0;
+				%>
+				<script>
 						function postCommitResult(userName,proName){
-							
 									$
 											.ajax({
 												url : 'webapi/commits/result',
@@ -140,7 +135,7 @@
 													if (result.length >= 3) {
 														
 														var a = document.getElementById(proName + "_result");
-														$(a).html( result[2]);
+														$(a).html(result[2] );
 													}
 													console.log(result);
 												},
@@ -149,8 +144,7 @@
 												}
 											});
 						}
-						function getConsoleText(type,proName,userName,buildNum) {
-							
+						function postConsoleText(type,proName,userName,buildNum) {
 							$.ajax({
 								url : 'webapi/commits/cosoleText',
 								type : 'GET',
@@ -164,57 +158,60 @@
 								async : true,
 								cache : true,
 								contentType: 'application/json; charset=UTF-8',
-								success : function(updateConsoleText(this)) {
-									var updatefbInfor = "http://140.134.26.77:8082/job/"+name +"_"+proName +"/"+buildNum +"/console";
+								success : function() {
+									var updatefbInfor = "http://140.134.26.77:8082/job/"+username +"_"+proName +"/"+buildNum +"/console";
+									updateConsoleText(this);
 									//$().html(updatefbInfor);
-									console.log(updatefbInfor);
-								}
-									
+									console.log(updatefbInfor);		
 								}, 
 								error : function(responseText) {
 									console.log("False!");
-								});
-	
+								}	
+							});
 						}
 					</script>
-					<div class="hwInfor under_height">
-						<table class="table table-striped" style="width: 100%">
-							<tbody>
+				<div class="hwInfor under_height">
+					<table class="table table-striped" style="width: 100%">
+						<tbody>
 							<%
-								for( GitlabProject gitProject: gitProjects){
+							  for (GitlabProject gitProject : gitProjects) {
 							%>
-								  <script type="text/javascript">
+							<script type="text/javascript">
 								  var userName =
 									<%="'" + choosedUser.getUserName() + "'"%>
 										var proName =
 									<%="'" + gitProject.getName() + "'"%>
-									postCommitResult(userName,proName)
-								</script>
-								<tr>
-									<td
-										id = "<%=gitProject.getName()%>" style="font-weight: 900; text-align: center; font-size: 18px; width: 60%;"><%=gitProject.getName()%></td>
-									<td
-									 id ="<%=gitProject.getName()%>_result" style="font-weight: 900; text-align: center; font-size: 18px; width: 40%;"></td>
-								</tr>
-								
-							<% } %>
-							</tbody>
-						</table>
-					</div>
+									postCommitResult(userName,proName);
+									   </script>
+							<tr>
+								<td id="<%=gitProject.getName()%>"
+									style="font-weight: 900; text-align: center; font-size: 18px; width: 70%;"><%=gitProject.getName()%></td>
+								<td
+									style="font-weight: 900; text-align: center; font-size: 18px; width: 30%;">
+									<a id="<%=gitProject.getName()%>_result"
+									onclick=updateConsoleText(this)></a>
+								</td>
+							</tr>
 
-					<pre class="FBInfor under_height">
-						<%
-							Status status = StatusFactory.getStatus("S");
-							String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/D4444444_OOP-HW13/1/console");
-							String consoleText = status.getConsole(detailConsoleText);
-						%>
-						<%= consoleText %>
-						
-					</pre>
-					<a onclick="getConsoleText()"><a>
+							<%
+							  }
+							%>
+						</tbody>
+					</table>
 				</div>
 
+				<pre class="FBInfor under_height">
+						<%
+						  Status status = StatusFactory.getStatus("S");
+						  String name = choosedUser.getUserName();
+
+						  String buildNum = studentDash.getLastBuildNum(name, "OOP-HW1");
+						  /*String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/"+name+"_"+proname + builnum +"console");
+						  String consoleText = status.getConsole(detailConsoleText);*/
+						%>
+					</pre>
 			</div>
+
 		</div>
 	</div>
 

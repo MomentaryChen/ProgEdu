@@ -176,30 +176,31 @@ input[type="text"], input[type="datetime-local"] {
 
 }
 .information {
-	border-radius: 8px;
+	
 	background-color: #ffffff;
-	border-style: ridge;
-	width: 1000px;
+	text-align:center;
 	height: 610px;
+    margin: 0px 10%;
 }
 
 .information_under {
 	border-radius: 8px;
 	background-color: #dfdfdf;
+	height:70%;
+	
 }
 
 .bar {
 	border-radius: 8px;
-	padding-left: 65px;
-	padding-top: 7px;
 	background-color: #1f3a4d;
 	width: auto;
 	height: 40px;
 }
 
 .information_top {
-	background-color: #ffffff;
-	height: 200px;
+	border-radius: 8px;
+	border-style: ridge;
+	margin-bottom:2px;
 }
 
 .hwInfor {
@@ -207,20 +208,24 @@ input[type="text"], input[type="datetime-local"] {
 	background-color: #dddfff;
 	width: 25%;
 	overflow-y: scroll;
+	border-radius: 8px;
+    border-style: ridge;
+ 
 }
 
 .basicInfor {
 	float: right;
 	padding: 20px;
-	background-color: #ffffff;
-	width: 750px;
+	width: 75%;
 }
 
 .FBInfor {
-	background-color: #fffddd;
 	width: 75%;
-	float:left;
-	border-radius:8px;
+	float: left;
+	border-radius: 8px;
+	background-color: #fffddd;
+	border-radius: 8px;
+    border-style: outset;
 }
 
 .top_height {
@@ -228,7 +233,7 @@ input[type="text"], input[type="datetime-local"] {
 }
 
 .under_height {
-	height: 366px;
+	height: 100%;
 }
 
 .font_size {
