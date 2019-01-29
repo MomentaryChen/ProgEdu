@@ -117,59 +117,63 @@
 							int pro_total_commits = 0;
 				%>
 				<script>
-						function postCommitResult(userName,proName){
-									$
-											.ajax({
-												url : 'webapi/commits/result',
-												type : 'GET',
-												data : {
-													"proName" : proName,
-													"userName" : userName
-												},
-												async : true,
-												cache : true,
-												contentType : 'application/json; charset=UTF-8',
-												success : function(responseText) {
-													var result = responseText
-															.split(",");
-													if (result.length >= 3) {
-														
-														var a = document.getElementById(proName + "_result");
-														$(a).html(result[2] );
-													}
-													console.log(result);
-												},
-												error : function(responseText) {
-													console.log("False!");
-												}
-											});
-						}
-						function postConsoleText(type,proName,userName,buildNum) {
-							$.ajax({
-								url : 'webapi/commits/cosoleText',
-								type : 'GET',
-								data: {
-									"type"     :type,
-									"proName" : proName,
-									"userName" :userName,
-									"buildNum" :buildNum
-									
-								}, 
-								async : true,
-								cache : true,
-								contentType: 'application/json; charset=UTF-8',
-								success : function() {
-									var updatefbInfor = "http://140.134.26.77:8082/job/"+username +"_"+proName +"/"+buildNum +"/console";
-									updateConsoleText(this);
-									//$().html(updatefbInfor);
-									console.log(updatefbInfor);		
-								}, 
-								error : function(responseText) {
-									console.log("False!");
-								}	
-							});
-						}
-					</script>
+					function postCommitResult(userName, proName) {
+						$.ajax({
+							url : 'webapi/commits/result',
+							type : 'GET',
+							data : {
+								"proName" : proName,
+								"userName" : userName
+							},
+							async : true,
+							cache : true,
+							contentType : 'application/json; charset=UTF-8',
+							success : function(responseText) {
+								var result = responseText.split(",");
+								if (result.length >= 3) {
+
+									var a = document.getElementById(proName
+											+ "_result");
+									$(a).html(result[2]);
+								}
+								console.log(result);
+							},
+							error : function(responseText) {
+								console.log("False!");
+							}
+						});
+					}
+					function postConsoleText(type, proName, userName, buildNum) {
+						$
+								.ajax({
+									url : 'webapi/commits/cosoleText',
+									type : 'GET',
+									data : {
+										"type" : type,
+										"proName" : proName,
+										"userName" : userName,
+										"buildNum" : buildNum
+
+									},
+									async : true,
+									cache : true,
+									contentType : 'application/json; charset=UTF-8',
+									success : function() {
+										var updatefbInfor = "http://140.134.26.77:8082/job/"
+												+ username
+												+ "_"
+												+ proName
+												+ "/" + buildNum + "/console";
+										updateConsoleText(this);
+										//$().html(updatefbInfor);
+										console.log(updatefbInfor);
+									},
+									error : function(responseText) {
+										console.log("False!");
+									}
+								});
+					}
+				</script>
 				<div class="hwInfor under_height">
 					<table class="table table-striped" style="width: 100%">
 						<tbody>
@@ -177,19 +181,19 @@
 							  for (GitlabProject gitProject : gitProjects) {
 							%>
 							<script type="text/javascript">
-								  var userName =
-									<%="'" + choosedUser.getUserName() + "'"%>
-										var proName =
-									<%="'" + gitProject.getName() + "'"%>
-									postCommitResult(userName,proName);
-									   </script>
+								var userName =
+							<%="'" + choosedUser.getUserName() + "'"%>
+								var proName =
+							<%="'" + gitProject.getName() + "'"%>
+								postCommitResult(userName, proName);
+							</script>
 							<tr>
 								<td id="<%=gitProject.getName()%>"
-									style="font-weight: 900; text-align: center; font-size: 18px; width: 70%;"><%=gitProject.getName()%></td>
+									style="font-weight: 900; font-size: 18px; width: 70%;"><%=gitProject.getName()%></td>
 								<td
 									style="font-weight: 900; text-align: center; font-size: 18px; width: 30%;">
 									<a id="<%=gitProject.getName()%>_result"
-									onclick=updateConsoleText(this)></a>
+									onclick="updateConsoleText(this);"></a>
 								</td>
 							</tr>
 
@@ -209,6 +213,7 @@
 						  /*String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/"+name+"_"+proname + builnum +"console");
 						  String consoleText = status.getConsole(detailConsoleText);*/
 						%>
+
 					</pre>
 			</div>
 
