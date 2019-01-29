@@ -37,7 +37,7 @@ public class JenkinsService {
 
   /**
    * return string
-   * 
+   *
    * @return "hello!"
    */
   @GET
@@ -49,21 +49,25 @@ public class JenkinsService {
   }
 
   /**
-   * return consoleText
+   * return String
    * 
-   * @return "hello!"
+   * @param proName  project name
+   * @param userName student name
+   * @param buildNum project build
+   * @param type     project type
+   * @return consoleText
    */
   @GET
   @Path("consoleText")
   @Produces(MediaType.TEXT_PLAIN)
   public Response getConsoleText(@QueryParam("proName") String proName,
       @QueryParam("userName") String userName, @QueryParam("buildNum") String buildNum,
-      @QueryParam("tyoe") String type) {
+      @QueryParam("type") String type) {
     String consoleText = "hello! ";
     try {
       Status status = StatusFactory.getStatus(type);
       String jenkinsHostUrl = jenkinsData.getJenkinsHostUrl();
-      String jenkinsUrl = jenkinsHostUrl + "/job/" + userName + "_" + proName + "/" + buildNum
+      String jenkinsUrl = jenkinsHostUrl + JOB + userName + "_" + proName + "/" + buildNum
           + "/console";
       status.getConsole(jenkins.getConsoleText(jenkinsUrl));
     } catch (LoadConfigFailureException e) {

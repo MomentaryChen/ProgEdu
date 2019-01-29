@@ -149,6 +149,33 @@
 												}
 											});
 						}
+						function getConsoleText(type,proName,userName,buildNum) {
+							
+							$.ajax({
+								url : 'webapi/commits/cosoleText',
+								type : 'GET',
+								data: {
+									"type"     :type,
+									"proName" : proName,
+									"userName" :userName,
+									"buildNum" :buildNum
+									
+								}, 
+								async : true,
+								cache : true,
+								contentType: 'application/json; charset=UTF-8',
+								success : function(updateConsoleText(this)) {
+									var updatefbInfor = "http://140.134.26.77:8082/job/"+name +"_"+proName +"/"+buildNum +"/console";
+									//$().html(updatefbInfor);
+									console.log(updatefbInfor);
+								}
+									
+								}, 
+								error : function(responseText) {
+									console.log("False!");
+								});
+	
+						}
 					</script>
 					<div class="hwInfor under_height">
 						<table class="table table-striped" style="width: 100%">
@@ -184,7 +211,7 @@
 						<%= consoleText %>
 						
 					</pre>
-
+					<a onclick="getConsoleText()"><a>
 				</div>
 
 			</div>
