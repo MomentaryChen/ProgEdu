@@ -15,6 +15,13 @@
 <%@ page import="org.gitlab.api.models.*"%>
 <%@ page import="java.util.*, fcu.selab.progedu.conn.Dash"%>
 <%@ page import="fcu.selab.progedu.jenkins.JobStatus"%>
+<<<<<<< HEAD
+=======
+<%@ page
+	import="org.json.JSONArray, org.json.JSONException, org.json.JSONObject"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="fcu.selab.progedu.conn.*"%>
+>>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 <%@ page import="fcu.selab.progedu.status.*"%>
 /*
 <%
@@ -33,7 +40,10 @@
 %>
 
 <head>
+<<<<<<< HEAD
 <title>ProgEdu2</title>
+=======
+>>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 <script src="http://js.nicedit.com/nicEdit-latest.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
@@ -47,6 +57,7 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 <%@ include file="header.jsp"%>
+<<<<<<< HEAD
 
 <style type="text/css">
 .information {
@@ -114,6 +125,10 @@
 </head>
 <body>
 
+=======
+</head>
+<body>
+>>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 	<%
 	  Conn conn = Conn.getInstance();
 
@@ -164,9 +179,7 @@
 							<%=choosedUser.getEmail()%></p>
 
 					</div>
-
-
-
+>>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 				</div>
 				<div class="bar font_size" style="color: #ffffff; text-align: left;">
 					<h3 style="float: left; margin: 0px">學生作業</h3>
@@ -177,6 +190,7 @@
 
 				<div class="information_under">
 
+>>>>>>> c43e01a4f1c6aac136319d27948ef66a2b7c6638
 					<%
 					  String private_token = choosedUser.getPrivateToken();
 								StudentConn sConn = new StudentConn(private_token);
@@ -188,23 +202,72 @@
 							var name = target.name;
 							$('#consoleText').text(name);
 						}
-					</script>
 
+						function postCommitResult(userName,proName){
+							
+									$
+											.ajax({
+												url : 'webapi/commits/result',
+												type : 'GET',
+												data : {
+													"proName" : proName,
+													"userName" : userName
+												},
+												async : true,
+												cache : true,
+												contentType : 'application/json; charset=UTF-8',
+												success : function(responseText) {
+													var result = responseText
+															.split(",");
+													if (result.length >= 3) {
+														
+														var a = document.getElementById(proName + "_result");
+														$(a).html( result[2]);
+													}
+													console.log(result);
+												},
+												error : function(responseText) {
+													console.log("False!");
+												}
+											});
+						}
+					</script>
 					<div class="hwInfor under_height">
 						<table class="table table-striped" style="width: 100%">
 							<tbody>
-								<!-- 	  							
-									
- -->
+							<%
+								for( GitlabProject gitProject: gitProjects){
+							%>
+								  <script type="text/javascript">
+								  var userName =
+									<%="'" + choosedUser.getUserName() + "'"%>
+										var proName =
+									<%="'" + gitProject.getName() + "'"%>
+									postCommitResult(userName,proName)
+								</script>
+								<tr>
+									<td
+										id = "<%=gitProject.getName()%>" style="font-weight: 900; text-align: center; font-size: 18px; width: 60%;"><%=gitProject.getName()%></td>
+									<td
+									 id ="<%=gitProject.getName()%>_result" style="font-weight: 900; text-align: center; font-size: 18px; width: 40%;"></td>
+								</tr>
+								
+							<% } %>
+
 							</tbody>
 						</table>
 					</div>
 
 
-					<div class="FBInfor under_height">
-						<p></p>
-
-					</div>
+					<pre class="FBInfor under_height">
+						<%
+							Status status = StatusFactory.getStatus("S");
+							String detailConsoleText = jenkins.getConsoleText("http://140.134.26.77:8082/job/D4444444_OOP-HW13/1/console");
+							String consoleText = status.getConsole(detailConsoleText);
+						%>
+						<%= consoleText %>
+						
+					</pre>
 
 				</div>
 

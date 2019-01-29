@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="utf-8"%>
-
+<%@ page import="fcu.selab.progedu.config.CourseConfig"%>
 <head>
 	<link rel="shortcut icon" href="./img/favicon-b.ico" type="image/x-icon"/>
 	<title>ProgEdu</title>
@@ -27,9 +27,8 @@
 								<a href="dashboard.jsp?lang=eh">English</a>
 							</div>
 						</li>
-						
 						<li>
-							<a href="index.jsp">Logout</a>
+							<a href="./memberLogout.jsp">Logout</a>
 						</li>
 					</ul>
 				</div>

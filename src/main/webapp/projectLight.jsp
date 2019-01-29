@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="BIG5"%>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
     <style type="text/css">
 		
 		#inline {

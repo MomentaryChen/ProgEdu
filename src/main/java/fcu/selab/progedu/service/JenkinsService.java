@@ -25,6 +25,8 @@ import fcu.selab.progedu.conn.StudentDashChoosePro;
 import fcu.selab.progedu.exception.LoadConfigFailureException;
 import fcu.selab.progedu.jenkins.JenkinsApi;
 import fcu.selab.progedu.jenkins.JobStatus;
+import fcu.selab.progedu.status.Status;
+import fcu.selab.progedu.status.StatusFactory;
 
 @Path("jenkins/")
 public class JenkinsService {
@@ -42,8 +44,32 @@ public class JenkinsService {
   @Path("hello")
   @Produces(MediaType.TEXT_PLAIN)
   public Response sayHello() {
-    String str = "hello! ";
+    String str = "HW";
     return Response.ok().entity(str).build();
+  }
+
+  /**
+   * return consoleText
+   * 
+   * @return "hello!"
+   */
+  @GET
+  @Path("consoleText")
+  @Produces(MediaType.TEXT_PLAIN)
+  public Response getConsoleText(@QueryParam("proName") String proName,
+      @QueryParam("userName") String userName, @QueryParam("buildNum") String buildNum,
+      @QueryParam("tyoe") String type) {
+    String consoleText = "hello! ";
+    try {
+      Status status = StatusFactory.getStatus(type);
+      String jenkinsHostUrl = jenkinsData.getJenkinsHostUrl();
+      String jenkinsUrl = jenkinsHostUrl + "/job/" + userName + "_" + proName + "/" + buildNum
+          + "/console";
+      status.getConsole(jenkins.getConsoleText(jenkinsUrl));
+    } catch (LoadConfigFailureException e) {
+      e.getStackTrace();
+    }
+    return Response.ok().entity(consoleText).build();
   }
 
   /**
