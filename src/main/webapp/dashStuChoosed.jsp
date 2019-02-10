@@ -83,9 +83,8 @@
 					}
 				}
 	%>
-
 	<div class="container-fluid" id="main">
-		<h1>學生資料</h1>
+		<h1 >學生資料</h1>
 		<%@ include file="projectLight.jsp"%>
 		<div class="information">
 			<div class="information_top">
@@ -109,7 +108,6 @@
 				<p style="width: 25%">學生作業</p>
 			</div>
 			<div class="information_under">
-
 				<%
 				  String private_token = choosedUser.getPrivateToken();
 							StudentConn sConn = new StudentConn(private_token);
@@ -213,9 +211,6 @@
 
 		</div>
 	</div>
-
-
-
 </body>
 
 </html>

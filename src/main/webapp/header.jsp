@@ -17,7 +17,7 @@
 		<div class="navbar-inner" >
 			<div class="container" >
 				
-				<a href="dashboard.jsp" class="brand"><img src="./img/favicon-w.ico" style="height:28px;padding-right:5px; "/>ProgEdu2</a>
+				<a href="dashboard.jsp" class="brand"><img src="./img/favicon-w.ico" style="height:28px;padding-bottom:5px;padding-right:5px;border:0px; "/><span>ProgEdu2</span></a>
 				<div id="app-nav-top-bar" class="nav-collapse" >
 					<ul class="nav pull-right">
 						<li>

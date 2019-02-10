@@ -66,6 +66,14 @@ img {
 #map_canvas img {
   max-width: none;
 }
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: rgba(253, 253, 253, 0.06);
+}
 button,
 input,
 select,
@@ -131,14 +139,6 @@ textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family:Microsoft JhengHei, Arial, "Helvetica Neue", sans-serif;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  background-color: rgba(253, 253, 253, 0.06);
 }
 a {
   color: #128dc2;
@@ -1262,7 +1262,7 @@ input,
 button,
 select,
 textarea {
-  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-family:"Helvetica Neue", Arial, sans-serif;
 }
 label {
   display: block;
@@ -3863,6 +3863,7 @@ input[type="submit"].btn.btn-mini {
 .navbar {
   overflow: visible;
   margin-bottom: 20px;
+  min-height: 50px;
   color: #e1e1e1;
   *position: relative;
   *z-index: 2;

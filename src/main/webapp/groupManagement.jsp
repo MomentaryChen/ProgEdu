@@ -127,7 +127,7 @@
 						});
 	</script>
 	<div id="main">
-		<h1>專題管理</h1>
+		<h1 style="margin-bottom: 20px;">專題管理</h1>
 		<div class="change_tab">
 			<ul class="tabs" style="margin-left: 0px; margin-bottom: 0px;">
 				<li><a href="#add_one_student"><fmt:message

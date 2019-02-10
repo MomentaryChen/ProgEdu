@@ -18,8 +18,8 @@
     <meta name="layout" content="main"/>
     <title>ProgEdu</title>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript" ></script>
-    <link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
+	<script src="./js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
     <script type="text/javascript">
 	  var Msg ='<%=session.getAttribute("enterError")%>';
 	  if (Msg != 'null') {
@@ -29,19 +29,24 @@
 	    alertError();
 	  }
 	</script>
+	<style>
+		body{
+		margin:0px;
+		padding:0px;
+		background:#fff url(./img/login.jpg) center center fixed no-repeat;
+		background-size: cover;
+	}        
+	</style>
 </head>
-<body style = "background-image: url('./img/login.jpg');">
+<body >
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<button class="btn btn-navbar" data-toggle="collapse" data-target="#app-nav-top-bar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="index.jsp" class="brand"><img src="./img/favicon-w.ico" style="height:24px;padding-right:5px; "/>ProgEdu2</a>
+				<a href="dashboard.jsp" class="brand"><img src="./img/favicon-w.ico" style="height:28px;padding-bottom:5px;padding-right:5px;border:0px; "/><span>ProgEdu2</span></a>
 			</div>
+			
 		</div>
+		
 	</div>
 	<div id="body-container">
 		<div id="body-content">
