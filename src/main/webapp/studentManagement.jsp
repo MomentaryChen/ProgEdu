@@ -70,20 +70,20 @@
 				<div id="add_one_student" class="tab_content">
 					<form id="newStudent">
 						<div class="add-student">
-							<label class="student-label" >Student's name:</label> <br /> <input
+							<label class="student-label" ><fmt:message key="studentManagement_tab_Name" /></label> <br /> <input
 								type="text" class="student-form  register" placeholder="eg. Victor" name="studentName" required>
 						</div>
 						<div class="add-student">
-							<label class="student-label">Student's Id:</label> <br /> <input
+							<label class="student-label"><fmt:message key="studentManagement_tab_Id" /></label> <br /> <input
 								type="text" class="student-form  register" placeholder="eg. D0000000" name="studentId" required>
 						</div>
 						<div class="add-student">
-							<label class="student-label">Student's email:</label> <br /> <input
+							<label class="student-label"><fmt:message key="studentManagement_tab_Email" /></label> <br /> <input
 								type="text" class="student-form  register" placeholder="eg. XXX@google.com" name="studentEmail" required>
 						</div>
 						<div class="add-student">
 							<button id="submit-button" type="submit" class="btn btn-primary"
-								name="action" value="CONFIRM">Save</button>
+								name="action" value="CONFIRM"><fmt:message key="studentManagement_tab_Save"/></button>
 						</div>
 					</form>
 				</div>
@@ -106,7 +106,7 @@
 						</div>
 						<div class="add-student">
 							<input type="submit" class="btn btn-primary"
-							style="border: gray solid 1px;margin-top:10px;margin-bottom:10px;" value="Upload" onclick="load();" required>
+							style="border: gray solid 1px;margin-top:10px;margin-bottom:10px;" value=<fmt:message key="studentManagement_tab_Upload" /> onclick="load();" required>
 						</div>
 						
 					</form>

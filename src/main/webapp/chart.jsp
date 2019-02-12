@@ -18,9 +18,9 @@
 		<%@ include file="projectLight.jsp"%>
 		<div class="change_tab">
 			<ul class="tabs">
-				<li><a href="#compiler_result">compiler_result</a></li>
-				<li><a href="#commit_count_build_result">commit_count_build_result</a></li>
-				<li><a href="#commit_record">commit_record</a></li>
+				<li><a href="#compiler_result"><fmt:message key="chart_compiler_result" /></a></li>
+				<li><a href="#commit_count_build_result"><fmt:message key="chart_count_build_result" /></a></li>
+				<li><a href="#commit_record"><fmt:message key="chart_commit_record" /></a></li>
 			</ul>
 
 			<div class="tab_container">
@@ -84,7 +84,7 @@
 				data : [ {
 					type : "splineArea",
 					showInLegend : true,
-					name : "½sÄ¶¥¢±Ñ",
+					name : <fmt:message key="chart_compiler_error" />,
 					color: $('.S').css("background-color"),
 					yValueFormatString : "$#,##0",
 					xValueFormatString : "MMM YYYY",

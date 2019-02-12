@@ -21,14 +21,14 @@
 				<div id="app-nav-top-bar" class="nav-collapse" >
 					<ul class="nav pull-right">
 						<li>
-							<a href="dropdown-menu show">language</a>
+							<a href="dropdown-menu show"><fmt:message key="top_navbar_language"/></a>
 							<div class="dropdown-menu" style="display:none">
-								<a href="dashboard.jsp?lang=zh">Chinese</a>
-								<a href="dashboard.jsp?lang=eh">English</a>
+								<a href="dashboard.jsp?lang=zh"><fmt:message key="top_navbar_lanChinese"/></a>
+								<a href="dashboard.jsp?lang=eh"><fmt:message key="top_navbar_lanEnglish"/></a>
 							</div>
 						</li>
 						<li>
-							<a href="./memberLogout.jsp">Logout</a>
+							<a href="./memberLogout.jsp"><fmt:message key="top_navbar_signOut"/></a>
 						</li>
 					</ul>
 				</div>
@@ -41,27 +41,27 @@
 			<ul>
 				<li>
 					<a href="./dashboard.jsp" style="padding-top: 20px;">
-						<i class="icon-dashboard icon-large"></i> Dashboard
+						<i class="icon-dashboard icon-large"></i><fmt:message key="header_Dashboard"/>
 					</a>
 				</li>
 				<li>
 					<a href="./studentManagement.jsp" style="padding-top: 20px;">
-						<i class="icon-user icon-large"></i> Student
+						<i class="icon-user icon-large"></i> <fmt:message key="header_Student"/>
 					</a>
 				</li>
 				<li>
 					<a href="./assignmentManagement.jsp" style="padding-top: 20px;">
-						<i class="icon-book icon-large"></i> Assignment
+						<i class="icon-book icon-large"></i> <fmt:message key="header_Assignment"/>
 					</a>
 				</li>
 				<li>
 					<a href="./groupManagement.jsp" style="padding-top: 20px;">
-						<i class="icon-list-alt icon-large"></i> Group
+						<i class="icon-list-alt icon-large"></i> <fmt:message key="header_Group"/>
 					</a>
 				</li>
 				<li>
 					<a href="./chart.jsp" style="padding-top: 20px;">
-						<i class="icon-bar-chart icon-large"></i> Charts
+						<i class="icon-bar-chart icon-large"></i> <fmt:message key="header_Charts"/>
 					</a>
 				</li>
 			</ul>

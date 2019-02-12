@@ -150,7 +150,7 @@
 											onchange="getFileName(this.files);" />
 									</div>
 									<br />
-									<p id="fileName" align="right">未選擇檔案</p>
+									<p id="fileName" align="right"><fmt:message key="assignmentManagement_edit_uploadState" /></p>
 								</div>
 							</div>
 						</div>

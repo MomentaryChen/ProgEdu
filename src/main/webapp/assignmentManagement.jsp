@@ -363,7 +363,7 @@
 								name="Hw_TestCase" size="50" width="48" onchange="getFileName(this.files);"/>
 						</div>
 						<br />
-						<p id="fileName" align="left">未選擇檔案</p>
+						<p id="fileName" align="left"><fmt:message key="assignmentManagement_edit_uploadState" /></p>
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -127,13 +127,13 @@
 						});
 	</script>
 	<div id="main">
-		<h1 style="margin-bottom: 20px;">專題管理</h1>
+		<h1 style="margin-bottom: 20px;"><fmt:message key="groupManagement_Title" /></h1>
 		<div class="change_tab">
 			<ul class="tabs" style="margin-left: 0px; margin-bottom: 0px;">
 				<li><a href="#add_one_student"><fmt:message
-							key="teacherManageGroup_h3_newGroup" /></a></li>
+							key="teacherManageGroup_newGroup" /></a></li>
 				<li><a href="#add_mul_student"><fmt:message
-							key="teacherManageGroup_h3_importGroup" /></a></li>
+							key="teacherManageGroup_importGroup" /></a></li>
 			</ul>
 
 			<div class="tab_container">
@@ -230,7 +230,7 @@
 						</form>
 					</div>
 					<div >
-						<p>範例</p>
+						<p><fmt:message key="groupManagement_Example" /></p>
 						<img src="./img/group_example.PNG" alt="Smiley face" width="300" style="padding:0px 40px;">
 					</div>
 				</div>
