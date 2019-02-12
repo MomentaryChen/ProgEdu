@@ -127,7 +127,7 @@
 						});
 	</script>
 	<div id="main">
-		<h1 style="margin-bottom: 20px;"><fmt:message key="groupManagement_Title" /></h1>
+		<h1 style="margin-bottom: 20px;"><fmt:message key="teacherManageGroup_Title" /></h1>
 		<div class="change_tab">
 			<ul class="tabs" style="margin-left: 0px; margin-bottom: 0px;">
 				<li><a href="#add_one_student"><fmt:message
@@ -203,14 +203,14 @@
 													class="sr-only">Close</span>
 											</button>
 											<h4 class="modal-title" id="exampleModalLabel">
-												<fmt:message key="teacherManageGroup_h4_importStudent" />
+												<fmt:message key="teacherManageGroup_importStudent" />
 											</h4>
 										</div>
 
 										<div class="modal-body">
 											<div class="form-group">
 												<h4>
-													<fmt:message key="teacherManageGroup_h4_uploadFile" />
+													<fmt:message key="teacherManageGroup_uploadFile" />
 												</h4>
 												<input type="file" name="file" size="50" />
 											</div>
@@ -230,7 +230,7 @@
 						</form>
 					</div>
 					<div >
-						<p><fmt:message key="groupManagement_Example" /></p>
+						<p><fmt:message key="teacherManageGroup_Example" /></p>
 						<img src="./img/group_example.PNG" alt="Smiley face" width="300" style="padding:0px 40px;">
 					</div>
 				</div>
@@ -279,7 +279,7 @@
 							<tr>
 								<th
 									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-										key="dashboard_th_groupName" /></th>
+										key="teacherManageGroup_GroupName" /></th>
 								<th
 									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
 										key="dashboard_th_studentId" /></th>

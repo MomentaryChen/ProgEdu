@@ -271,7 +271,7 @@
 				style="text-align: right; padding-right: 20px">
 				<button class="btn btn-primary" name="distributeHW">
 					<a href="./addAssignment.jsp" style="color: #ffffff"><fmt:message
-							key="teacherManageHW_h3_distributeHW" /></a>
+							key="teacherManageHW_distributeHW" /></a>
 				</button>
 			</div>
 			<div class="card-block" style="padding: 20px 20px 20px 20px;">

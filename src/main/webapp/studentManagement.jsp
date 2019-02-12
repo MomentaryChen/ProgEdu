@@ -61,9 +61,9 @@
 		<div class="change_tab">
 			<ul class="tabs" style="margin-left: 0px; margin-bottom: 0px;">
 				<li><a href="#add_one_student"><fmt:message
-							key="teacherManageStudent_h3_newAStudent" /></a></li>
+							key="teacherManageStudent_newAStudent" /></a></li>
 				<li><a href="#add_mul_student"><fmt:message
-							key="teacherManageStudent_h3_newAllStudent" /></a></li>
+							key="teacherManageStudent_newAllStudent" /></a></li>
 			</ul>
 
 			<div class="tab_container">
@@ -91,7 +91,7 @@
 					<form id="addAllStudent">
 						<div class="add-student">
 							<label class="control-label"><strong><fmt:message
-										key="teacherManageStudent_h4_uploadStudent" /></label> <br /> <a
+										key="teacherManageStudent_uploadStudent" /></label> <br /> <a
 								href="StudentTemplate.csv" class="btn"
 								style="background-color: #F5F5F5; color: #292b2c; border-color: #ccc">
 								<fmt:message
@@ -101,7 +101,7 @@
 
 						<div class="add-student">
 							<label class="student-label"><strong><fmt:message
-										key="teacherManageStudent_h4_uploadStudent" />:</strong></label> <br /> <input
+										key="teacherManageStudent_uploadStudent" />:</strong></label> <br /> <input
 								type="file" name="file" class="span4">
 						</div>
 						<div class="add-student">

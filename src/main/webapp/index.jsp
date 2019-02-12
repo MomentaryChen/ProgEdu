@@ -55,7 +55,7 @@
 					<div class="span4"></div>
 					<div class="span8">
 						<div class="container-signin">
-							<legend>Please Login</legend>
+							<legend><fmt:message key="index_plzSignIn"/></legend>
 							<form action='AfterEnter' method='POST' id='loginForm' class='form-signin' autocomplete='off'>
 								<div class="form-inner">
 									<div class="input-prepend">
@@ -68,7 +68,7 @@
 									</div>
 								</div>
 								<footer class="signin-actions">
-									<input class="btn btn-primary" name="go" type='submit' id="submit" value='Login'/>
+									<input class="btn btn-primary" name="go" type='submit' id="submit" value= <fmt:message key="index_btn_signIn"/> />
 								</footer>
 							</form>
 						</div>

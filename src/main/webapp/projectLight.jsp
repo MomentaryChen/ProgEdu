@@ -50,10 +50,10 @@
 	</style>
     
 	<div id="inline">
-		<p class="ovol NB" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_compileNotYet"/></p>
-		<p class="ovol CPF" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_compileFail"/></p>
-		<p class="ovol CSF" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="dashboard_p_checkstyleFail"/></p>
+		<p class="ovol NB" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="projectLight_p_compileNotYet"/></p>
+		<p class="ovol CPF" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="projectLight_p_compileFail"/></p>
+		<p class="ovol CSF" style="padding: 5px 10px; margin-left: 5px;"><fmt:message key="projectLight_p_checkstyleFail"/></p>
 		<!-- <p class="ovol plagirism" style="padding: 5px 10px;"><fmt:message key="dashboard_p_plagiarism"/></p> -->
-		<p class="ovol CJF" style="padding: 5px 10px;"><fmt:message key="dashboard_p_unitTestFail"/></p>
-		<p class="ovol S" style="padding: 5px 10px;"><fmt:message key="dashboard_p_compileSuccess"/></p>
+		<p class="ovol CJF" style="padding: 5px 10px;"><fmt:message key="projectLight_p_unitTestFail"/></p>
+		<p class="ovol S" style="padding: 5px 10px;"><fmt:message key="projectLight_p_compileSuccess"/></p>
 	</div>
