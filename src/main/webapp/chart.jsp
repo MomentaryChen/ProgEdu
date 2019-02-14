@@ -13,7 +13,7 @@
 
 	<div id="main">
 		<h1 style="margin-bottom: 20px;">
-			<fmt:message key="dashboard_li_chart" />
+			<fmt:message key="chart_Title" />
 		</h1>
 		<%@ include file="projectLight.jsp"%>
 		<div class="change_tab">
@@ -84,7 +84,7 @@
 				data : [ {
 					type : "splineArea",
 					showInLegend : true,
-					name : <fmt:message key="chart_compiler_error" />,
+					name : "chart_compiler_error" ,
 					color: $('.S').css("background-color"),
 					yValueFormatString : "$#,##0",
 					xValueFormatString : "MMM YYYY",
