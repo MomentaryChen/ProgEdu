@@ -38,7 +38,7 @@
 <%@ include file="./header.jsp"%>
 </head>
 	
-<body>
+<body >
 	<%
 	  Conn conn = Conn.getInstance();
 

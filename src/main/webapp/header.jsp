@@ -9,22 +9,44 @@
 	<link href="./css/customize-template.css" type="text/css" media="screen, projection" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> 
 	<link href="./css/progedu.css" type="text/css" media="screen, projection" rel="stylesheet" />
+	
+	<style>
+		.dropopen{
+			display:block;
+		}
+		.dropclose{
+			display:none;
+		}
+	</style>
 </head>
 
-<body>
+<body >
+    <script>
+        
+	    
+	    function showLanguageMenu(){
+			console.log('456');
+			$('.dropdown-menu').toggle();
+		}
+	    
+	
+	</script>
+    
 	<%@ include file="language.jsp"%>
-	<div class="navbar navbar-fixed-top" >
+	<div class="navbar navbar-fixed-top"  >
 		<div class="navbar-inner" >
 			<div class="container" >
 				
 				<a href="dashboard.jsp" class="brand"><img src="./img/favicon-w.ico" style="height:28px;padding-bottom:5px;padding-right:5px;border:0px; "/><span>ProgEdu2</span></a>
 				<div id="app-nav-top-bar" class="nav-collapse" >
 					<ul class="nav pull-right">
-						<li>
-							<a href="dropdown-menu show"><fmt:message key="top_navbar_language"/></a>
-							<div class="dropdown-menu" style="display:none">
+						<li class="dropdown">
+							<a id="language" href="#" onClick="showLanguageMenu();"><fmt:message key="top_navbar_language"/></a>
+							
+							<div id="language_menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+
 								<a href="dashboard.jsp?lang=zh"><fmt:message key="top_navbar_lanChinese"/></a>
-								<a href="dashboard.jsp?lang=eh"><fmt:message key="top_navbar_lanEnglish"/></a>
+								<a href="dashboard.jsp?lang=en"><fmt:message key="top_navbar_lanEnglish"/></a>
 							</div>
 						</li>
 						<li>
@@ -35,6 +57,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div class="body-nav body-nav-horizontal body-nav-fixed">
 		<div class="container" >

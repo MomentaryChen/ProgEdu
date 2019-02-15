@@ -141,8 +141,7 @@
 					<form id="addMember" name="select">
 						<table>
 							<tr>
-								<td><label for="groupName" style="font-size: 20px;"><fmt:message
-											key="teacherManageGroup_groupName" />: </label> <input type="text"
+								<td><label for="groupName" style="font-size: 20px;"><fmt:message key="teacherManageGroup_groupName_Title" />: </label> <input type="text"
 									id="groupName" name="groupName" /></td>
 							</tr>
 							<tr class="col-md-12">
@@ -279,7 +278,7 @@
 							<tr>
 								<th
 									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
-										key="teacherManageGroup_GroupName" /></th>
+										key="teacherManageGroup_groupName" /></th>
 								<th
 									style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
 										key="dashboard_th_studentId" /></th>
