@@ -37,16 +37,13 @@
 
 <%@ include file="./header.jsp"%>
 </head>
-	
-<body >
+<body>
+
 	<%
 	  Conn conn = Conn.getInstance();
-
 				HttpConnect httpConn = HttpConnect.getInstance();
-
 				UserDbManager db = UserDbManager.getInstance();
 				ProjectDbManager Pdb = ProjectDbManager.getInstance();
-
 				// db users
 				List<User> users = db.listAllUsers();
 
@@ -62,7 +59,7 @@
 
 				JenkinsApi jenkins = JenkinsApi.getInstance();
 	%>
-	
+
 	<div id="loadingBackground" style="display: none">
 		<div id="loader"></div>
 	</div>
@@ -79,7 +76,8 @@
 					style="margin-top: 20px; width: 100%">
 					<thead>
 						<tr>
-							<th width="1%" style="font-weight: 900; visibility:hidden; text-align: center; font-size: 18px"><fmt:message
+							<th width="1%"
+								style="font-weight: 900; visibility: hidden; text-align: center; font-size: 18px"><fmt:message
 									key="dashboard_th_drop" /></th>
 							<th style="font-weight: 900; text-align: center; font-size: 18px"><fmt:message
 									key="dashboard_th_studentId" /></th>
@@ -136,7 +134,8 @@
 				+' style="line-height: 25px; color: red;" ></i></td>';
 			content += '<td width="10%" style="text-align:center" id="ID"><a href="dashStuChoosed.jsp?studentId='
 					+ gitlabId + '">' + userName.toUpperCase() + '</a></td>';
-			content += '<td width="10%" style="text-align:center" id="userName" >' + name +'</td>';
+			content += '<td width="10%" style="text-align:center" id="userName" >'
+					+ name + '</td>';
 
 			if (commits.length > 0) {
 				for (j in projects) {

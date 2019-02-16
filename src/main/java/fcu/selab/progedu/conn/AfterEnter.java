@@ -50,10 +50,11 @@ public class AfterEnter extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     final HttpSession session = request.getSession();
+
     String username = request.getParameter(USER_NAME);
     String password = request.getParameter("password");
-
     String privateToken = checkEnter(username, password);
+    Cookie cookie = new Cookie("name", username);
     sendRedirect(response, session, privateToken, username);
   }
 
