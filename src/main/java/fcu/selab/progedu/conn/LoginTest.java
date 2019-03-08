@@ -53,11 +53,11 @@ public class LoginTest extends HttpServlet {
     final HttpSession session = request.getSession();
     String username = request.getParameter(USER_NAME);
     String password = request.getParameter("password");
-    
+
     Writer wf = response.getWriter();
-    if( username.equals("root") && password.equals("zxcv1234") ) {
+    if ( username.equals("root") && password.equals("zxcv1234") ) {
       wf.write("s");
-    }else{
+    } else {
       wf.write("f");
     }
     Cookie cookie = new Cookie("SESSTIONID", session.getId());
