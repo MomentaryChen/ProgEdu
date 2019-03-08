@@ -59,12 +59,12 @@
 	  <param-value>Access-Control-Allow-Origin,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
     </init-param>
     <async-supported>true</async-supported>
- </filter>
-	<filter-mapping>
-	  <filter-name>CorsFilter</filter-name>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
-<servlet>
+  <servlet>
     <description></description>
     <display-name>LoginTest</display-name>
     <servlet-name>LoginTest</servlet-name>
@@ -74,4 +74,8 @@
     <servlet-name>LoginTest</servlet-name>
     <url-pattern>/LoginTest</url-pattern>
   </servlet-mapping>
+  
+  <listener>
+	<listener-class>SessionListener</listener-class>
+  </listener>
 </web-app>
