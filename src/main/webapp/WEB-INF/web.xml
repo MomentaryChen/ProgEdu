@@ -77,6 +77,6 @@
   </servlet-mapping>
   
   <listener>
-	<listener-class>SessionListener</listener-class>
+	<listener-class>fcu.selab.progedu.conn.SessionListener</listener-class>
   </listener>
 </web-app>
