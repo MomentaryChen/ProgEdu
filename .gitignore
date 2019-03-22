@@ -1,6 +1,4 @@
 /target/
-
-pom.properties
 .checkstyle
 .classpath
 .project
@@ -8,3 +6,7 @@ pom.properties
 .idea/
 progedu.iml
 /bin/
+src/main/resources/config/course_config.properties
+src/main/resources/config/db_config.properties
+src/main/resources/config/gitlab_config.properties
+src/main/resources/config/jenkins_config.properties
