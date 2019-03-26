@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This web.xml file is not required when using Servlet 3.0 container,
      see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xmlns="http://java.sun.com/xml/ns/javaee, http://www.springmodules.org/schema/cache/springmodules-cache.xsd, http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>Jersey Web Application</servlet-name>
@@ -24,7 +23,7 @@
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>  
+  </welcome-file-list>
   <servlet>
     <description></description>
     <display-name>AfterEnter</display-name>
@@ -35,7 +34,6 @@
     <servlet-name>AfterEnter</servlet-name>
     <url-pattern>/AfterEnter</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ChooseLanguage</display-name>
@@ -46,37 +44,4 @@
     <servlet-name>ChooseLanguage</servlet-name>
     <url-pattern>/ChooseLanguage</url-pattern>
   </servlet-mapping>
-  
-  <filter>
-	<filter-name>CorsFilter</filter-name>
-	<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-	<init-param>
-	  <param-name>cors.allowed.methods</param-name>
-	  <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
-    </init-param>
-    <init-param>
-	  <param-name>cors.allowed.headers</param-name>
-	  <param-value>Access-Control-Allow-Origin,Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
-    </init-param>
-    <async-supported>true</async-supported>
-  </filter>
-  <filter-mapping>
-    <filter-name>CorsFilter</filter-name>
-	  <url-pattern>/*</url-pattern>
-  </filter-mapping>
-	
-  <servlet>
-    <description></description>
-    <display-name>LoginTest</display-name>
-    <servlet-name>LoginTest</servlet-name>
-    <servlet-class>fcu.selab.progedu.conn.LoginTest</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginTest</servlet-name>
-    <url-pattern>/LoginTest</url-pattern>
-  </servlet-mapping>
-  
-  <listener>
-	<listener-class>fcu.selab.progedu.conn.SessionListener</listener-class>
-  </listener>
 </web-app>

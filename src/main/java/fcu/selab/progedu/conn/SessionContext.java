@@ -32,6 +32,7 @@ public class SessionContext {
   public synchronized void addSession(HttpSession session) {
     if (session != null) {
       sessionMap.put(session.getId(), session);
+      System.out.println(session.getId());
     }
   }
   /**use the session id to get the session.

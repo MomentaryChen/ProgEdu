@@ -23,6 +23,7 @@ public class SessionListener implements HttpSessionListener {
   public void sessionDestroyed(HttpSessionEvent se) {
     HttpSession session = se.getSession();
     sessionContext.delSession(session);
+    System.out.println("Sesstion DEL");
   }
   
 }
