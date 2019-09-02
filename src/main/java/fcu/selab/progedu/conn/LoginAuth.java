@@ -74,8 +74,6 @@ public class LoginAuth extends HttpServlet {
       ob.put("isLogin", false);
       e.printStackTrace();
     }
-
-    System.out.println(ob.toString());
     response.setStatus(200);
     PrintWriter pw = response.getWriter();
     pw.print(ob);
@@ -105,12 +103,9 @@ public class LoginAuth extends HttpServlet {
     UserDbManager userDb = UserDbManager.getInstance();
     RoleUserDbManager roleUserDb = RoleUserDbManager.getInstance();
 
-    System.out.println("test1");
     int uid = userDb.getUserIdByUsername(username);
-    System.out.println("test2");
     int rid = roleUserDb.getTopRid(uid);
     RoleDbManager roleDb = RoleDbManager.getInstance();
-    System.out.println("rid:" + rid);
     return roleDb.getRoleNameById(rid);
   }
 
