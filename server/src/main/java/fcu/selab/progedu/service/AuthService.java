@@ -17,7 +17,12 @@ import io.jsonwebtoken.Claims;
 
 @Path("auth/")
 public class AuthService {
-  JwtConfig jwt = JwtConfig.getInstance();
+  JwtConfig jwtConfig = JwtConfig.getInstance();
+  private static AuthService instance = new AuthService();
+
+  public static AuthService getInstance() {
+    return instance;
+  }
 
   /**
    * @param token test
@@ -26,13 +31,21 @@ public class AuthService {
   @POST
   @Path("login")
   @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-  public Response checkAuth(@FormParam("token") String token) {
+  public Response login(@FormParam("token") String token) {
+    JSONObject ob = checkAuth(token);
+    return Response.ok().entity(ob.toString()).build();
+  }
+
+  /**
+   * @param token JWT Token
+   * @return JSON Bbject
+   */
+  public JSONObject checkAuth(String token) {
     JSONObject ob = new JSONObject();
-    if (!token.equals("null") && jwt.validateToken(token)) {
-      Claims body = jwt.decodeToken(token);
+    if (!token.equals("null") && jwtConfig.validateToken(token)) {
+      Claims body = jwtConfig.decodeToken(token);
       System.out.print("body" + body);
       RoleEnum roleEnum = RoleEnum.getRoleEnum((String) body.get("sub"));
-      
       switch (roleEnum) {
         case TEACHER: {
           ob.put("isLogin", true);
@@ -52,6 +65,24 @@ public class AuthService {
     } else {
       ob.put("isLogin", false);
     }
-    return Response.ok().entity(ob.toString()).build();
+    return ob;
   }
+
+  /**
+   * Api token authorization
+   *
+   * @param token jwt
+   * @return is pass
+   */
+  public boolean ensureAPIToken(String token) {
+    if (token == null || token.equals("null")) {
+      return false;
+    }
+    String jwt = token.split(" ")[1];
+    if (!jwtConfig.validateToken(jwt)) {
+      return false;
+    }
+    return true;
+  }
+
 }

@@ -2,6 +2,7 @@ package fcu.selab.progedu.service;
 
 import com.csvreader.CsvReader;
 import fcu.selab.progedu.config.CourseConfig;
+import fcu.selab.progedu.config.JwtConfig;
 import fcu.selab.progedu.conn.GitlabService;
 import fcu.selab.progedu.data.User;
 import fcu.selab.progedu.db.RoleDbManager;
@@ -21,6 +22,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -63,7 +66,7 @@ public class UserService {
   }
 
   private GitlabService gitlabService = GitlabService.getInstance();
-
+  private AuthService authService = AuthService.getInstance();
   private CourseConfig course = CourseConfig.getInstance();
   private UserDbManager dbManager = UserDbManager.getInstance();
   private RoleUserDbManager rudb = RoleUserDbManager.getInstance();
@@ -132,9 +135,9 @@ public class UserService {
   }
 
   /**
-   * @param name name
+   * @param name     name
    * @param username id
-   * @param email email
+   * @param email    email
    * @param password password
    * @return response
    */
@@ -178,9 +181,9 @@ public class UserService {
   /**
    * (to do )
    *
-   * @param username (to do )
+   * @param username        (to do )
    * @param currentPassword (to do )
-   * @param newPassword (to do )
+   * @param newPassword     (to do )
    * @return response (to do)
    */
   @POST
@@ -281,7 +284,13 @@ public class UserService {
    */
   @DELETE
   @Path("/{username}")
-  public Response deleteUser(@PathParam("username") String username) {
+  public Response deleteUser(
+      @Context HttpHeaders httpHeaders,
+      @PathParam("username") String username) {
+    String token = httpHeaders.getHeaderString(HttpHeaders.AUTHORIZATION);
+    if (!authService.ensureAPIToken(token)) {
+      return Response.status(401).build();
+    }
     UserDbService userDbService = UserDbService.getInstance();
     int userId = userDbService.getId(username);
     return deleteUser(userId);
@@ -294,31 +303,25 @@ public class UserService {
    */
   public Response deleteUser(int userId) {
     UserDbService userDbService = UserDbService.getInstance();
-
-
     ////delete Gitlab
-    gitlabService.deleteUser( userDbService.getGitLabId(userId) );
+    gitlabService.deleteUser(userDbService.getGitLabId(userId));
 
     // if user's group has one user delete group
     GroupService groupService = GroupService.getInstance();
     List<Group> groups = gdb.getGroups(userId);
     for (Group group : groups) {
-
-      if ( group.isNotMoreThanOneUser() ) { // delete Group
-        groupService.removeGroup( group.getGroupName() );
-        
+      if (group.isNotMoreThanOneUser()) { // delete Group
+        groupService.removeGroup(group.getGroupName());
       } else if (group.getLeader() == userId) { // change Group Leader and update DB
         List<User> groupUsers = group.getMembers();
-        for (User groupUser:groupUsers) {
+        for (User groupUser : groupUsers) {
           if (groupUser.getId() != userId) {
-            group.setLeader( groupUser.getId() );
-            gdb.updateLeader( group );
+            group.setLeader(groupUser.getId());
+            gdb.updateLeader(group);
             break;
           }
         }
-
       }
-
     }
 
     ////remove jenkins
@@ -329,7 +332,6 @@ public class UserService {
       String jobName = jenkinsService.getJobName(username, assignmentName);
       jenkinsService.deleteJob(jobName);
     }
-
 
     //remove db
     userDbService.deleteUser(userId);

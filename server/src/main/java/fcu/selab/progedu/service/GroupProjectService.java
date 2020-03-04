@@ -64,7 +64,7 @@ public class GroupProjectService {
   }
 
   /**
-   * 
+   *
    * @param groupName   group name
    * @param projectName project name
    * @param projectType projectType
@@ -118,7 +118,7 @@ public class GroupProjectService {
 
   /**
    * Add a project to database
-   * 
+   *
    * @param groupName   group name
    * @param projectName project name
    * @param readMe      readMe
